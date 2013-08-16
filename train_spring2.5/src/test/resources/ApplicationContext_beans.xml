@@ -1,0 +1,90 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- 注册PointEditor，这样只要属性是Point对象，那么就可以使用字符串“int,int”的形式注入 -->
+	<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="customEditors">
+			<map>
+				<entry key="com.sin90lzc.training.training_spring_2.Point">
+					<bean id="pointEditor" class="com.sin90lzc.training.training_spring_2.PointEditor"></bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="simpleBean" class="com.sin90lzc.training.training_spring_2.Cup.SimpleBean"
+		abstract="true">
+		<property name="container" ref="cup"></property>
+	</bean>
+
+	<bean id="constructorBean" class="com.sin90lzc.training.training_spring_2.ConstructorBean"
+		init-method="init" parent="simpleBean">
+		<constructor-arg value="constructorBean"></constructor-arg>
+		<constructor-arg ref="cup"></constructor-arg>
+	</bean>
+
+	<bean id="setterBean" class="com.sin90lzc.training.training_spring_2.SetterBean"
+		parent="simpleBean" scope="prototype">
+		<property name="beanName" value="setterBean"></property>
+		<property name="container" ref="cup"></property>
+	</bean>
+
+	<bean id="cup" class="com.sin90lzc.training.training_spring_2.Cup">
+	</bean>
+
+	<bean id="listCup" class="com.sin90lzc.training.training_spring_2.Cup">
+		<property name="beans">
+			<list>
+				<ref bean="constructorBean" />
+				<ref bean="setterBean" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="constructorBeanFromFactory" class="com.sin90lzc.training.training_spring_2.FactoryForBean"
+		factory-method="createConstructorBean" />
+
+	<bean id="setterBeanFromFactory" class="com.sin90lzc.training.training_spring_2.FactoryForBean"
+		factory-method="createSetterBean" />
+
+	<bean id="beanForReplaceMethod"
+		class="com.sin90lzc.training.training_spring_2.BeanForReplaceMethod">
+		<property name="message" value="message"></property>
+		<replaced-method name="printMessage" replacer="replacer"></replaced-method>
+		<lookup-method name="getBean" bean="setterBean" />
+	</bean>
+
+	<bean id="replacer" class="com.sin90lzc.training.training_spring_2.ChangeMethod"></bean>
+
+	<bean id="setPointBean" class="com.sin90lzc.training.training_spring_2.SetPointBean"
+		parent="simpleBean">
+		<property name="point" value="7,9"></property>
+	</bean>
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:jdbc.properties</value><!-- classpath*表示从所有classpath中查找 -->
+				<value>classpath*:security.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="placeHolderBean" class="com.sin90lzc.training.training_spring_2.PlaceHolderBean"
+		parent="simpleBean">
+		<property name="url" value="${oracle.url}" />
+		<property name="driver" value="${oracle.driver}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+	</bean>
+
+	<bean id="beanCreateFromFactoryBean"
+		class="com.sin90lzc.training.training_spring_2.BeanCreateFromFactoryBean">
+	</bean>
+</beans>

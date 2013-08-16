@@ -1,0 +1,63 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<bean id="audience" class="com.sin90lzc.training.training_spring_2.aop.Audience"></bean>
+	<bean id="singer" class="com.sin90lzc.training.training_spring_2.aop.Singer" scope="prototype"></bean>
+	<bean id="audienceAdvice"
+		class="com.sin90lzc.training.training_spring_2.aop.AudienceAdvice">
+		<constructor-arg ref="audience"></constructor-arg>
+	</bean>
+
+	<!-- 使用正则表达式定义切入点 -->
+	<bean id="patternPointCut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+		<property name="pattern" value=".*perform" />
+	</bean>
+
+	<!-- 使用DefaultPointcutAdvisor把通知与正则表达式切入点联结起来,形成一个通知者(或者称为切面) -->
+	<bean id="patternAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="audienceAdvice" />
+		<property name="pointcut" ref="patternPointCut" />
+	</bean>
+
+	<!-- 使用RegexpMethodPointcutAdvisor可以直接把通知与正则表达式的切入点表达式结合起来,形成切面 -->
+	<bean id="concise_patternAdvisor"
+		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice" ref="audienceAdvice" />
+		<property name="pattern" value=".*perform" />
+	</bean>
+
+	<!-- 使用AspectJ表达式定义的切入点 -->
+	<bean id="aspectJPointcut"
+		class="org.springframework.aop.aspectj.AspectJExpressionPointcut">
+		<property name="expression" value="execution(* Artist+.perform(..))" />
+	</bean>
+
+	<!-- 使用AspectJExpressionPointcutAdvisor可以直接把通知与aspectJ切入点表达式结合起来,形成切面 -->
+	<bean id="aspectJAdvisor"
+		class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
+		<property name="advice" ref="audienceAdvice" />
+		<property name="expression" value="execution(* com.sin90lzc.training.training_spring_2.aop.Artist.perform())" /><!-- 这里的AspectJ表达式不正确,再看 -->
+	</bean>
+
+	<!-- 使用ProxyFactoryBean代理工厂Bean生成应用了切面后的代理Bean -->
+	<bean id="singerProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="singer" />
+		<property name="interceptorNames">
+			<list>
+				<value>patternAdvisor</value><!-- 这里可以换成是concise_patternAdvisor或aspectJAdvisor或patternAdvisor -->
+			</list>
+		</property>
+		<property name="proxyInterfaces">
+			<list>
+				<value>com.sin90lzc.training.training_spring_2.aop.Artist</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 声明该Bean可以自动代理TargetBean -->
+	<!-- <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" /> -->
+</beans>

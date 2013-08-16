@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rootElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://www.uniquetest.com/uniquetest"
+xsi:schemaLocation="http://www.uniquetest.com/uniquetest simple.xsd">
+ <elementOne elementOneKey="1" elementOneDesc="a"/>
+ <elementOne elementOneKey="1" elementOneDesc="b"/>
+</rootElement>

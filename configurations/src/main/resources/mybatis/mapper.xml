@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sin90lzc.mybatis.xmlmappers.XmlSampleMapper">
+	<!-- 在该命名空间下打开缓存，并且缓存是只读的 -->
+	<cache readOnly="true"></cache>
+
+	<!-- 定义一些常用的sql语句段，方便重用 -->
+	<sql id="emp_props">id,name,sal,job_id job,hire_date as hireDate,leave_date as
+		leaveDate
+	</sql>
+
+	<!-- 简单的查询Emp，不包括它里面的复杂类型对象。这里本来打算试下如何使用TypeHandler，但发现不成功，待解决 -->
+	<resultMap type="Emp" id="simpleEmpResultMap">
+		<id property="id" column="id"></id>
+		<result property="name" column="name" />
+		<result property="sal" column="sal" />
+		<result property="job" column="job" typeHandler="JobTypeHandler" />
+		<result property="hireDate" column="hire_date" />
+		<result property="leaveDate" column="leave_date" />
+	</resultMap>
+	<select id="selectSimpleEmp" parameterType="int" resultMap="simpleEmpResultMap">
+		select
+		<include refid="emp_props" />
+		from emp where id=#{id}
+	</select>
+
+	<select id="selectDeptId" parameterType="int" resultType="int"
+		flushCache="false">
+		select id from dept where id=#{id}
+	</select>
+
+	<resultMap type="Dept" id="deptResultMap">
+		<id property="id" column="id" />
+		<result property="name" column="name"></result>
+		<result property="comment" column="comment" />
+	</resultMap>
+
+	<select id="selectDept" parameterType="int" resultMap="deptResultMap">
+		select *
+		from dept where id=#{id}
+	</select>
+
+	<select id="selectCountDept" resultType="int" flushCache="false"
+		statementType="STATEMENT" useCache="true">
+		select count(*) from
+		dept;
+	</select>
+
+	<select id="selectAllDept" resultType="Dept" flushCache="false"
+		useCache="true">
+		select * from dept;
+	</select>
+
+	<insert id="insertDeptAutoKey" parameterType="string"
+		useGeneratedKeys="true" keyProperty="id" flushCache="false">
+		insert into
+		dept(name,comment) values(#{name},'insertAutoKey')
+	</insert>
+
+	<insert id="insertDeptSelectKey" parameterType="Dept"
+		keyProperty="id" flushCache="false">
+		<selectKey keyProperty="id" resultType="int" order="BEFORE"> select
+			max(id)+1 from dept
+		</selectKey>
+		insert into dept(id,name,comment)
+		values(#{id},#{name},'insertSelectKey')
+	</insert>
+
+	<delete id="deleteDept">
+        <![CDATA[delete from dept where id>#{id}]]>
+	</delete>
+
+	<resultMap type="Emp" id="empResultMap">
+		<id column="id" property="id"></id>
+		<result column="name" property="name"></result>
+		<result column="sal" property="sal" />
+		<result column="hire_date" property="hireDate" javaType="java.sql.Date" />
+		<result column="leave_date" property="leaveDate" javaType="java.sql.Date" />
+		<association column="manager" property="manager" javaType="Emp"
+			select="selectEmpById"></association><!-- 
+			因为要使用递归查询，只能使用select方式 -->
+		<association column="e.job_id" property="job" javaType="Job"
+			resultMap="jobResultMap"></association>
+	</resultMap>
+	<resultMap type="Job" id="jobResultMap">
+		<id column="jid" property="id" />
+		<result column="jname" property="name" />
+		<result column="jcomment" property="comment" />
+		<association column="jdept_id" property="dept" javaType="Dept"
+			resultMap="deptResultMap2" />
+	</resultMap>
+
+	<!-- 因为有关联的表有相同的字段名，所以很容易造成同一个对象的resultMap要声明两次。解决这个问题有两个方法：1.数据库设计时至少保证有关联的表没有相同的字段名；2.在mapper.xml文件中每次要用到这些字段时取一个相同的唯一别名 -->
+	<resultMap type="Dept" id="deptResultMap2">
+		<id column="did" property="id" />
+		<result column="dname" property="name" />
+		<result column="dcomment" property="comment" />
+	</resultMap>
+	<select id="selectEmp" resultMap="empResultMap">
+		select e.*,j.id jid,j.name
+		jname,j.comment jcomment,j.dept_id
+		jdept_id,d.id did,d.name
+		dname,d.comment dcomment from emp e left
+		outer join job j on
+		e.job_id=j.id left outer join dept d on
+		d.id=j.dept_id
+	</select>
+	<select id="selectEmpById" resultMap="empResultMap"
+		parameterType="int">
+		select e.*,j.id jid,j.name jname,j.comment
+		jcomment,j.dept_id
+		jdept_id,d.id did,d.name dname,d.comment dcomment
+		from emp e left
+		outer join job j on e.job_id=j.id left outer join dept
+		d on
+		d.id=j.dept_id
+		where e.id=#{id}
+	</select>
+
+	<!-- 这里搞不懂为什么返回的结果集一定要用ArrayList，用HashSet会出错 -->
+	<resultMap id="categoryResultMap" type="Category">
+		<id column="id" property="id"></id>
+		<result column="name" property="name"></result>
+		<association property="parent" column="parent_id" select="selectCategoryById"></association><!-- 
+			递归查询，只能用select方式 -->
+		<collection property="children" column="id" ofType="Category"
+			javaType="java.util.ArrayList" select="selectCategoryChildren"></collection><!-- 
+			递归查询，只能用select方式 -->
+	</resultMap>
+	<select id="selectAllCategory" resultMap="categoryResultMap">
+		select * from category;
+	</select>
+	<select id="selectCategoryById" resultMap="categoryResultMap"
+		parameterType="int">
+		select * from category where id=#{parent_id}
+	</select>
+	<select id="selectCategoryChildren" resultMap="categoryResultMap"
+		parameterType="int">
+		select * from category where parent_id=#{id}
+	</select>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:tst="http://www.uniquetest.com/uniquetest"
+ targetNamespace="http://www.uniquetest.com/uniquetest"
+elementFormDefault="qualified" attributeFormDefault="unqualified">
+ <xsd:element name="rootElement">
+  <xsd:complexType>
+   <xsd:sequence>
+    <xsd:element name="elementOne" maxOccurs="unbounded">
+     <xsd:complexType>
+      <xsd:attribute name="elementOneKey" type="xsd:integer"/>
+      <xsd:attribute name="elementOneDesc" type="xsd:string"/>
+     </xsd:complexType>
+    </xsd:element>
+   </xsd:sequence>
+  </xsd:complexType>
+  <xsd:unique name="EOneKeyU">
+   <xsd:selector xpath=".//tst:elementOne"/>
+   <xsd:field xpath="@elementOneKey"/>
+  </xsd:unique>
+ </xsd:element>
+</xsd:schema>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<school>
+	<class level="1">
+		<teachers>
+			<teacher>
+				<name>王海</name>
+				<subject>语文</subject>
+			</teacher>
+			<teacher name="刘文辉" subject="数学">
+			</teacher>
+		</teachers>
+		<students>
+			<student onduty="false">
+				<name>张三</name>
+			</student>
+			<student name="李四" onduty="true"></student>
+			<student>
+				<name>陈胜</name>
+				<onduty>true</onduty>
+			</student>
+			<student name="吴广">
+			</student>
+		</students>
+	</class>
+	<class level="2">
+		<teachers>
+			<teacher>
+				<name>李恢</name>
+				<subject>英语</subject>
+			</teacher>
+			<teacher name="陈红" subject="数学">
+			</teacher>
+		</teachers>
+		<students>
+			<student onduty="false">
+				<name>洪新</name>
+			</student>
+			<student name="李渊" onduty="true"></student>
+			<student>
+				<name>梁良</name>
+				<onduty>true</onduty>
+			</student>
+			<student>
+				<name>辰光</name>
+			</student>
+		</students>
+	</class>
+</school>

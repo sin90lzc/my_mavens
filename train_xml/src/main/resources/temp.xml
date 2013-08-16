@@ -1,0 +1,14 @@
+<xs:element name="school">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="teachers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="teacher" minOccurs="1" maxOccurs="unbounded"></xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="students"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>

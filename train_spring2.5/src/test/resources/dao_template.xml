@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+				http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+
+	<description>Spring持久技术的模板配置,包括jdbc模板,hibernate模板,ibatis模板,JPI模板
+	</description>
+
+	<!-- 最基本的JDBC模板,利用JDBC和简单索引参数查询提供对数据库的简单访问 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource_C3P0"></property>
+	</bean>
+
+	<!-- 能够在执行查询时把值绑定到SQL里的命名参数,而不是使用索引参数 -->
+	<bean id="namedParameterJdbcTemplate"
+		class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="jdbcTemplate"></constructor-arg><!-- 因为没有默认构造器,需要使用构造器注入 -->
+		<!-- <constructor-arg ref="dataSource_DBCP" /> -->
+	</bean>
+
+	<!-- 利用Java5的特性,如自动装箱,泛型和可变参数列表来简化JDBC模板的使用 -->
+	<bean id="simpleJdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
+		<constructor-arg ref="jdbcTemplate"></constructor-arg><!-- 因为没有默认构造器,需要使用构造器注入 -->
+		<!-- <constructor-arg ref="dataSource_JDBC" /> -->
+	</bean>
+</beans>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+				http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+	
+	<!-- 通过配置来实现配置外在化 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	
+	<!-- 通过jndi获得数据源 -->
+	<!-- 
+	<bean id="dataSource_jndi" class="org.springframework.jndi.JndiObjectFactoryBean"
+		scope="singleton">
+		<property name="jndiName" value="/jdbc/jndiName"></property>
+		<property name="resourceRef" value="true"></property> --><!-- 如果运行于应用服务器时,会在jndiName前添加/java:comp/env/ -->
+	<!-- </bean> -->
+	<!-- 在spring2.0后可以通过直接使用配置来使用jndi -->
+	<!-- 
+	<jee:jndi-lookup id="dataSource_jndi2" jndi-name="/jdbc/jndiName"
+		resource-ref="true" />
+	 -->
+
+	<!-- 通过第三方的数据源连接池来获得数据源,这里分别列出了DBCP和C3P0的配置 -->
+	<bean id="dataSource_DBCP" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${mysql.driver}"></property>
+		<property name="url" value="${mysql.url}"></property>
+		<property name="username" value="${mysql.username}"></property>
+		<property name="password" value="${mysql.password}"></property>
+		<property name="initialSize" value="${mysql.initialSize}"></property>
+		<property name="maxActive" value="${mysql.maxActive}"></property>
+	</bean>
+	
+	<bean id="dataSource_C3P0" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${mysql.driver}"></property>
+		<property name="jdbcUrl" value="${mysql.url}"></property>
+		<property name="user" value="${mysql.username}"></property>
+		<property name="password" value="${mysql.password}"></property>
+		<property name="initialPoolSize" value="${mysql.initialSize}"></property>
+	</bean>
+	
+	<!-- 最简单的JDBC数据源,基于Spring的两个数据源实现DriverManagerDataSource和SingleConnectionDataSource,都没有池管理 -->
+	<bean id="dataSource_jdbc" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${mysql.driver}"></property>
+		<property name="url" value="${mysql.url}"></property>
+		<property name="username" value="${mysql.username}"></property>
+		<property name="password" value="${mysql.password}"></property>
+	</bean>
+</beans>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.sin90lzc.com/school" xmlns:s="http://www.sin90lzc.com/school"
+	xmlns="http://www.sin90lzc.com/school" elementFormDefault="qualified">
+
+	<xs:simpleType name="subject3">
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Math"></xs:enumeration>
+					<xs:enumeration value="Chinese"></xs:enumeration>
+					<xs:enumeration value="English"></xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="数学|语文|英语"></xs:pattern>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+
+	<xs:element name="school">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="teachers">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="teacher" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="name">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="[A-Z](\w*)"></xs:pattern>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="subject">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="subject3">
+														<xs:attribute name="main" default="false" type="xs:boolean"></xs:attribute>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="head" type="xs:boolean"></xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="uni_tname">
+						<xs:selector xpath="./s:teacher"></xs:selector>
+						<xs:field xpath="./s:name"></xs:field>
+					</xs:unique>
+					<xs:unique name="uni_head">
+						<xs:selector xpath="./s:teacher"></xs:selector>
+						<xs:field xpath="./@head"></xs:field>
+					</xs:unique>
+				</xs:element>
+				<xs:element name="students">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="student" maxOccurs="unbounded"
+								minOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="name">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="[A-Z](\w*)"></xs:pattern>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="teacher">
+											<xs:complexType>
+												<xs:attribute name="ref" type="xs:string">
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:unique name="uni_sname">
+						<xs:selector xpath="./s:student"></xs:selector>
+						<xs:field xpath="./s:name"></xs:field>
+					</xs:unique>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:key name="key_tname">
+			<xs:selector xpath="./s:teachers/s:teacher"></xs:selector>
+			<xs:field xpath="./s:name"></xs:field>
+		</xs:key>
+		<xs:keyref name="ref_tname" refer="key_tname">
+			<xs:selector xpath="./s:students/s:student"></xs:selector>
+			<xs:field xpath="./s:teacher/@ref"></xs:field>
+		</xs:keyref>
+	</xs:element>
+</xs:schema>

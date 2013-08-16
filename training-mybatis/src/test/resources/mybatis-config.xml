@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 配置外在化 -->
+	<properties resource="jdbc.properties"></properties>
+
+	<!-- MyBatis全局配置属性 -->
+	<settings>
+		<setting name="cacheEnabled" value="true" /><!-- 开启或关闭mapper文件中的缓存设置 -->
+		<setting name="lazyLoadingEnabled" value="true" /><!-- 全局的开启或关闭延迟加载 -->
+		<setting name="multipleResultSetsEnabled" value="true" /><!-- 是否允许单个sql语句返回多个ResultSet -->
+		<setting name="useColumnLabel" value="true" /><!-- 是否可以使用列伪名 -->
+		<setting name="useGeneratedKeys" value="false" /><!-- 是否允许jdbc自动生成主键 -->
+		<setting name="autoMappingBehavior" value="PARTIAL" /><!-- PARTIAL:只是自动映射简单的，非嵌套的结果集；FULL：包括映射嵌套的结果集 -->
+		<setting name="defaultExecutorType" value="SIMPLE" /><!--有三个可选值：SIMPLE,REUSE,BATCH -->
+		<setting name="defaultStatementTimeout" value="25000" /><!-- 查询超时时间 -->
+		<setting name="aggressiveLazyLoading" value="true" /><!-- 任何一个延迟加载的属性被加载时，那么同对象的其他属性都会被加载 -->
+	</settings>
+
+	<!-- 使用一个别名来代替全限定名，这样就可以在mapper文件中使用简单的别名了。除了自定义别名，mybatis还内置了一些常用的类别名 -->
+	<typeAliases>
+		<typeAlias alias="Emp" type="com.sin90lzc.training.training_bean.Emp"></typeAlias>
+		<typeAlias alias="Dept" type="com.sin90lzc.training.training_bean.Dept"></typeAlias>
+		<typeAlias alias="Job" type="com.sin90lzc.training.training_bean.Job"></typeAlias>
+		<typeAlias alias="JobTypeHandler"
+			type="com.sin90lzc.training.training_mybatis.typehandler.JobTypeHandler"></typeAlias>
+		<typeAlias alias="DeptTypeHandler"
+			type="com.sin90lzc.training.training_mybatis.typehandler.DeptTypeHandler"></typeAlias>
+		<typeAlias alias="Category"
+			type="com.sin90lzc.training.training_bean.Category"></typeAlias>
+	</typeAliases>
+
+	<!-- 自定义类型处理器，就是说根据数据库的字段类型和java类型，来决定使用哪个类型处理器。Mybatis本身内置了一些常用的类型处理器 -->
+	<typeHandlers>
+		<typeHandler javaType="Job" jdbcType="INTEGER"
+			handler="JobTypeHandler"></typeHandler>
+		<typeHandler javaType="Dept" jdbcType="INTEGER" handler="DeptTypeHandler"></typeHandler>
+	</typeHandlers>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" /><!-- mybatis有两种事务管理器：JDBC和MANAGED.这两个都是类型别名.他们都实现了TransactionFactory -->
+			<dataSource type="POOLED"><!-- mybatis内置了三种数据源:UNPOOL,JNDI,POOLED -->
+				<property name="driver" value="${mysql.driver}" />
+				<property name="url" value="${mysql.url}" />
+				<property name="username" value="${mysql.username}" />
+				<property name="password" value="${mysql.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="com/sin90lzc/mybatis/xmlmappers/XmlSampleMapper.xml" />
+		<mapper class="com.sin90lzc.mybatis.classmappers.SampleMapper"></mapper>
+	</mappers>
+</configuration>

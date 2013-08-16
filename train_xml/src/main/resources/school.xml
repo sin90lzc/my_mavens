@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<school xmlns="http://www.sin90lzc.com/school" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.sin90lzc.com/school school_opt.xsd">
+	<teachers>
+		<teacher head="true">
+			<name>Tim</name>
+			<subject main="true">Math</subject>
+		</teacher>
+		<teacher>
+			<name>Rain</name>
+			<subject>英语</subject>
+		</teacher>
+		<teacher>
+			<name>Petter</name>
+			<subject>语文</subject>
+		</teacher>
+	</teachers>
+	<students>
+		<student>
+			<name>Sally</name>
+			<teacher ref="Tim" />
+		</student>
+		<student>
+			<name>Edison</name>
+			<teacher ref="Petter" />
+		</student>
+	</students>
+</school>

@@ -1,0 +1,13 @@
+
+<xs:element name="school">
+	<xs:complexType>
+	</xs:complexType>
+	<xs:key name="key_tname">
+		<xs:selector xpath="./s:teachers/s:teacher"></xs:selector>
+		<xs:field xpath="./s:name"></xs:field>
+	</xs:key>
+	<xs:keyref name="ref_tname" refer="key_tname">
+		<xs:selector xpath="./s:students/s:student"></xs:selector>
+		<xs:field xpath="./s:teacher/@ref"></xs:field>
+	</xs:keyref>
+</xs:element>
