@@ -7,7 +7,7 @@ import java.util.Random;
  * <ul>
  * <li>调用".class"不会初始化。</li>
  * <li>调用Class.forName会进行初始化。</li>
- * <li>调用常数静态域不会进行初始化</li>
+ * <li>调用常量静态域不会进行初始化，但调用非常量静态域会进行初始化</li>
  * <li>调用构造方法会进行初始化</li>
  * </ul>
  * 
@@ -26,7 +26,7 @@ public class TF_ClassInitialization {
 		}
 
 		Initable() {
-			System.out.println("execute Initable3 constructor");
+			System.out.println("execute Initable constructor");
 		}
 	}
 

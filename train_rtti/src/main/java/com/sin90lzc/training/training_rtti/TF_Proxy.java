@@ -53,19 +53,30 @@ public class TF_Proxy {
 	public static class RealMusic implements Music {
 
 		public String toString() {
-			return "RealMusic";
+			System.out.println(getClass()+" toString()");
+			return super.toString();
+		}
+		
+		public boolean equals(Object obj) {
+			System.out.println(getClass() + " equals()");
+			return super.equals(obj);
+		}
+		
+		public int hashCode() {
+			System.out.println(getClass()+" hashCode()");
+			return super.hashCode();
 		}
 
 		public void play() {
-			System.out.println(this + " play()");
+			System.out.println(getClass() + " play()");
 		}
 
 		public void stop() {
-			System.out.println(this + " stop()");
+			System.out.println(getClass() + " stop()");
 		}
 
 		public void pause() {
-			System.out.println(this + " pause()");
+			System.out.println(getClass() + " pause()");
 		}
 
 	}
@@ -138,10 +149,10 @@ public class TF_Proxy {
 		}
 		System.out.println("***proxy object's interfaces:");
 		for (Class<?> c : faces) {
-			System.out.println(c.getSimpleName());
+			System.out.println(c.getName());
 		}
 		System.out.println("***proxy object's SuperClass:");
-		System.out.println(supClass.getSimpleName());
+		System.out.println(supClass.getName());
 	}
 
 }
