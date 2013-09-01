@@ -118,11 +118,63 @@ public class TF_Proxy {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
+		//通过Proxy.newProxyInstance()方式生成代理
+		//simplyWayToProxy();
+		//通过Proxy.getProxyClass()方式生成代理
+		proxyByConstructor();
+		
+	}
+	
+	/**
+	 * 通过{@link Proxy#newProxyInstance(ClassLoader, Class[], InvocationHandler)}的方式生成代理
+	 * @throws Exception
+	 */
+	public static void simplyWayToProxy() throws Exception{
 		MusicInvokeHandler handler = new MusicInvokeHandler(new RealMusic());
 		Music musicProxy = (Music) Proxy.newProxyInstance(
 				Music.class.getClassLoader(), new Class[] { Music.class },
 				handler);
+		musicProxy.play();
+		Object proxyInMethod = handler.getProxy();
+		assert musicProxy == proxyInMethod;
+		musicProxy.stop();
+		musicProxy.pause();
+		musicProxy.toString();
+		musicProxy.equals(musicProxy);
+		musicProxy.hashCode();
+		musicProxy.getClass();
+		System.out
+				.println("--------------------------about the proxy object----------------------");
+		Class<?> proxyClass = musicProxy.getClass();
+		Method[] methods = proxyClass.getMethods();
+		Class<?>[] faces = proxyClass.getInterfaces();
+		Class<?> supClass = proxyClass.getSuperclass();
+		Constructor<?>[] constructors = proxyClass.getConstructors();
+		System.out.println("***proxy object's methods:");
+		for (Method m : methods) {
+			System.out.println(m.toString());
+		}
+		System.out.println("***proxy object's constructors:");
+		for (Constructor<?> c : constructors) {
+			System.out.println(c.toString());
+		}
+		System.out.println("***proxy object's interfaces:");
+		for (Class<?> c : faces) {
+			System.out.println(c.getName());
+		}
+		System.out.println("***proxy object's SuperClass:");
+		System.out.println(supClass.getName());
+	}
+	
+	/**
+	 * 通过构造器方式生成代理{@link Proxy#getProxyClass(ClassLoader, Class...)}
+	 * @throws Exception
+	 */
+	public static void proxyByConstructor() throws Exception{
+		MusicInvokeHandler handler = new MusicInvokeHandler(new RealMusic());
+		Class<?> proxyClazz=Proxy.getProxyClass(Music.class.getClassLoader(), new Class[] { Music.class });
+		Music musicProxy =(Music)proxyClazz.getConstructor(new Class<?>[]{InvocationHandler.class}).newInstance(handler);
 		musicProxy.play();
 		Object proxyInMethod = handler.getProxy();
 		assert musicProxy == proxyInMethod;
