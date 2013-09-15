@@ -8,7 +8,7 @@ package com.sin90lzc.training.training_rtti;
  * <ul>
  * <li>
  * A instanceof B:表示A是否是B的一个实例。</li>
- * <li>A.isInstance(B)：表示B对象是否是A类型的对象的一个实例。</li>
+ * <li>A.isInstance(B)：表示B对象是否是A类型的一个实例。</li>
  * <li>
  * A.isAssignableFrom(B):表示B类型的对象是否可以赋值给A类型的对象。</li>
  * </ul>
