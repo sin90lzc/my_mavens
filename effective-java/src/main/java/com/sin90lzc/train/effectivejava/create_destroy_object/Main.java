@@ -1,5 +1,8 @@
 package com.sin90lzc.train.effectivejava.create_destroy_object;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 	
 	private static final class Point implements Cloneable{
@@ -36,11 +39,10 @@ public class Main {
 	}
 	
 	public static void main(String[] args) throws Exception{
-		Point a=new Point();
-		Point b=new Point();
-		a.setX(2);
-		System.out.println(a.equals(b));
-		Point ca=a.clone();
-		System.out.println(ca.getS()==a.getS());
+		List<?> list =new ArrayList<String>();
+	}
+	
+	private static <E extends Object> void unsafeAdd(List<E> list,String o){
+		Object x=list.get(0);
 	}
 }
