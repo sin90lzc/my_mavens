@@ -13,12 +13,13 @@
 		<mysql-connector.version>5.1.14</mysql-connector.version>
 		<ehcache.version>1.6.2</ehcache.version>
 		<slf4j-simple.version>1.6.2</slf4j-simple.version>
+		<javassist.version>3.12.1.GA</javassist.version>
 	</properties>
 
 	<!-- profile配置 -->
 	<!-- -->
 	<profiles>
-			<profile>
+		<profile>
 			<id>compiler-1.7</id>
 			<!-- 如果用的是jdk1.6，则激活该profile -->
 			<activation>
@@ -80,7 +81,7 @@
 		</profile>
 	</profiles>
 
-	 <!-- 依赖配置 -->
+	<!-- 依赖配置 -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -199,6 +200,11 @@
 				<groupId>${spring.groupId}</groupId>
 				<artifactId>spring-orm</artifactId>
 				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>${javassist.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
