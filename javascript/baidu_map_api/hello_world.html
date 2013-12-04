@@ -1,0 +1,183 @@
+<!--
+API文档可参考：http://developer.baidu.com/map/reference/index.php
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Hello, World</title>
+<style type="text/css">
+html{height:100%}
+body{height:100%;margin:0px;padding:0px}
+#container{height:100%;}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=EN2cKDx3C3SvKhDaPdoQf8Gw"></script>
+
+</head>
+ 
+<body>
+<!-- container用于展示地图的div -->
+<div id="container"></div>
+<script type="text/javascript">
+
+//-------------------------------------------地图实例-----------------------------------------------------//
+var map = new BMap.Map("container");          // 创建地图实例
+var px=116.404;//天安门x坐标
+var py=39.915;//天安门y坐标
+var point = new BMap.Point(px, py);  // 创建点坐标
+map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+map.enableScrollWheelZoom(true);	//开启鼠标滚轮缩放地图的功能
+//-------------------------------------------END-----------------------------------------------------//
+
+//-------------------------------------------控件实例-----------------------------------------------------//
+/*
+百度地图上负责与地图交互的UI元素称为控件。百度地图API中提供了丰富的控件，您还可以通过Control类来实现自定义控件。
+
+地图API中提供的控件有：
+
+Control：控件的抽象基类，所有控件均继承此类的方法、属性。通过此类您可实现自定义控件。
+NavigationControl：地图平移缩放控件，PC端默认位于地图左上方，它包含控制地图的平移和缩放的功能。移动端提供缩放控件，默认位于地图右下方。
+OverviewMapControl：缩略地图控件，默认位于地图右下方，是一个可折叠的缩略地图。
+ScaleControl：比例尺控件，默认位于地图左下方，显示地图的比例关系。
+MapTypeControl：地图类型控件，默认位于地图右上方。
+CopyrightControl：版权控件，默认位于地图左下方。
+GeolocationControl：定位控件，针对移动端开发，默认位于地图左下方。
+
+可以使用Map.addControl()方法向地图添加控件。在此之前地图需要进行初始化。
+*/
+/* 控件相关操作 */
+var navigationOptions={anchor:0,offset:new BMap.Size(10, 10),showZoomInfo:false,type:BMAP_NAVIGATION_CONTROL_SMALL};//平移缩放控件参数配置
+var navigationControl=new BMap.NavigationControl(navigationOptions);//创建平移缩放控件实例
+map.addControl(navigationControl); //添加地图平移缩放控件
+map.addControl(new BMap.ScaleControl());  //添加比例显示控件
+map.addControl(new BMap.OverviewMapControl({isOpen:true}));  //添加缩略地图控件
+map.addControl(new BMap.MapTypeControl());  
+map.setCurrentCity("广州"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
+
+
+/* 自定义控件 */
+// 定义一个控件类，即function  
+function ZoomControl(){  
+    // 设置默认停靠位置和偏移量
+    this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;  
+    this.defaultOffset = new BMap.Size(50, 50);  
+}  
+// 通过JavaScript的prototype属性继承于BMap.Control 
+ZoomControl.prototype = new BMap.Control(); 
+
+// 自定义控件必须实现initialize方法，并且将控件的DOM元素返回 
+// 在本方法中创建个div元素作为控件的容器，并将其添加到地图容器中 
+ZoomControl.prototype.initialize = function(map){  
+// 创建一个DOM元素 
+ var div = document.createElement("div");  
+// 添加文字说明  
+ div.appendChild(document.createTextNode("放大2级"));  
+ // 设置样式  
+ div.style.cursor = "pointer";  
+ div.style.border = "1px solid gray";  
+ div.style.backgroundColor = "white";  
+ // 绑定事件，点击一次放大两级  
+ div.onclick = function(e){
+  map.zoomTo(map.getZoom() + 2);  
+ }  
+ // 添加DOM元素到地图中 
+ map.getContainer().appendChild(div);  
+ // 将DOM元素返回
+ return div;  
+}
+
+// 创建自定义控件实例  
+var myZoomCtrl = new ZoomControl();  
+// 添加到地图当中  
+map.addControl(myZoomCtrl);
+//-------------------------------------------END-----------------------------------------------------//
+
+//-------------------------------------------覆盖物实例-----------------------------------------------------//
+/*
+所有叠加或覆盖到地图的内容，我们统称为地图覆盖物。如标注、矢量图形元素(包括：折线和多边形和圆)、信息窗口等。覆盖物拥有自己的地理坐标，当您拖动或缩放地图时，它们会相应的移动。
+
+地图API提供了如下几种覆盖物：
+
+Overlay：覆盖物的抽象基类，所有的覆盖物均继承此类的方法。
+Marker：标注表示地图上的点，可自定义标注的图标。
+Label：表示地图上的文本标注，您可以自定义标注的文本内容。
+Polyline：表示地图上的折线。
+Polygon：表示地图上的多边形。多边形类似于闭合的折线，另外您也可以为其添加填充颜色。
+Circle: 表示地图上的圆。
+InfoWindow：信息窗口也是一种特殊的覆盖物，它可以展示更为丰富的文字和多媒体信息。注意：同一时刻只能有一个信息窗口在地图上打开。
+可以使用map.addOverlay方法向地图添加覆盖物，使用map.removeOverlay方法移除覆盖物，注意此方法不适用于InfoWindow。
+*/
+var marker = new BMap.Marker(point);        // 创建标注  
+map.addOverlay(marker);                     // 将标注添加到地图中天安门的位置 
+
+//使用自定义图标
+function addMarker(point, index){  // 创建图标对象 
+var myIcon = new BMap.Icon("markers.png", new BMap.Size(23, 25), {  
+// 指定定位位置。 
+// 当标注显示在地图上时，其所指向的地理位置距离图标左上  
+// 角各偏移10像素和25像素。您可以看到在本例中该位置即是 
+   // 图标中央下端的尖角位置。  
+   offset: new BMap.Size(10, 25),  
+   // 设置图片偏移。 
+   // 当您需要从一幅较大的图片中截取某部分作为标注图标时，您 
+   // 需要指定大图的偏移位置，此做法与css sprites技术类似。  
+   imageOffset: new BMap.Size(0, 0 - index * 25)   // 设置图片偏移  
+ });    
+// 创建标注对象并添加到地图 
+ var myMarker = new BMap.Marker(point, {icon: myIcon});  
+ map.addOverlay(myMarker);  
+}  
+// 随机向地图添加10个标注  
+var bounds = map.getBounds();  
+var lngSpan = bounds.maxX - bounds.minX;  
+var latSpan = bounds.maxY - bounds.minY;  
+for (var i = 0; i < 10; i ++) {  
+ var myPoint = new BMap.Point(bounds.minX + lngSpan * (Math.random() * 0.7 + 0.15),  
+                            bounds.minY + latSpan * (Math.random() * 0.7 + 0.15));  
+ addMarker(myPoint, i); 
+}
+
+//让标注可以拖拽
+marker.enableDragging(); 
+//添加拖拽事件
+marker.addEventListener("dragend", function(e){  
+ alert("当前位置：" + e.point.lng + ", " + e.point.lat);  
+});
+
+//信息窗口相关
+var opts = {  
+ width : 250,     // 信息窗口宽度  
+ height: 100,     // 信息窗口高度  
+ title : "天安门"  // 信息窗口标题 
+};
+var infoWindowContent=document.createElement("div");
+infoWindowContent.appendChild(document.createTextNode("信息窗口内容"));
+var infoWindow = new BMap.InfoWindow(infoWindowContent, opts);  // 创建信息窗口对象  
+//当点击标注时打开信息窗口
+marker.addEventListener("click",function(){
+	map.openInfoWindow(infoWindow, marker.getPosition()); 
+});
+
+var polyline = new BMap.Polyline([  
+   new BMap.Point(116.399, 39.910),  
+   new BMap.Point(116.405, 39.920)  
+ ],  
+ {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5}  
+);  
+map.addOverlay(polyline);
+
+var tilelayer = new BMap.TileLayer();         // 创建地图层实例
+tilelayer.getTilesUrl=function(){             // 设置图块路径 
+ return "layer.gif";  
+};  
+
+var local = new BMap.LocalSearch(map, {  
+ renderOptions:{map: map}  
+});  
+local.search("广州购书中心");  
+</script>
+</body>
+</html>

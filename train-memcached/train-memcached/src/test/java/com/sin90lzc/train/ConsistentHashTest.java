@@ -6,7 +6,7 @@ import java.util.Map;
 import junit.framework.TestCase;
 
 import com.sin90lzc.train.memcached.ConsistentHash;
-import com.sin90lzc.train.memcached.RamdomHashFunction;
+import com.sin90lzc.train.memcached.SimpleHashFunction;
 
 public class ConsistentHashTest extends TestCase{
 
@@ -16,7 +16,7 @@ public class ConsistentHashTest extends TestCase{
 
 	public void testConsistentHash() {
 		ConsistentHash<Integer> ch = new ConsistentHash<Integer>(
-				new RamdomHashFunction(), 2, null);
+				new SimpleHashFunction(), 2, null);
 		for (int node = 900000; node > 899900; node--) {
 			ch.add(node);
 		}
