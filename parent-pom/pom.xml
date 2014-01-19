@@ -14,6 +14,10 @@
 		<ehcache.version>1.6.2</ehcache.version>
 		<slf4j-simple.version>1.6.2</slf4j-simple.version>
 		<javassist.version>3.12.1.GA</javassist.version>
+		<apache.lucene.groupId>org.apache.lucene</apache.lucene.groupId>
+		<apache.lucene.version>4.5.0</apache.lucene.version>
+		<apache.commons.groupId>org.apache.commons</apache.commons.groupId>
+		<apache.jexl.version>2.1.1</apache.jexl.version>
 	</properties>
 
 	<!-- profile配置 -->
@@ -87,7 +91,7 @@
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>3.8.2</version>
+				<version>4.11</version>
 				<scope>test</scope><!-- 只在测试范围内有效 -->
 			</dependency>
 			<dependency>
@@ -205,6 +209,16 @@
 				<groupId>javassist</groupId>
 				<artifactId>javassist</artifactId>
 				<version>${javassist.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${apache.lucene.groupId}</groupId>
+				<artifactId>lucene-core</artifactId>
+				<version>${apache.lucene.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${apache.commons.groupId}</groupId>
+				<artifactId>commons-jexl</artifactId>
+				<version>${apache.jexl.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
