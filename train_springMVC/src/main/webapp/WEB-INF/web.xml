@@ -6,7 +6,10 @@
 	<display-name>Archetype Created Web Application</display-name>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/springconfig/mvc-servlet.xml</param-value>
+		<!--
 		<param-value>classpath*:spring-*.xml</param-value>
+		-->
 		<description>定义spirng上下文的配置文件</description>
 	</context-param>
 	<listener>
@@ -15,10 +18,11 @@
 	<servlet>
 		<servlet-name>springmvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
-		<url-pattern>/*.htm</url-pattern>
+		<url-pattern>/*.html</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
