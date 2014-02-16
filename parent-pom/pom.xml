@@ -18,6 +18,7 @@
 		<apache.lucene.version>4.5.0</apache.lucene.version>
 		<apache.commons.groupId>org.apache.commons</apache.commons.groupId>
 		<apache.jexl.version>2.1.1</apache.jexl.version>
+		<junit.version>4.11</junit.version>
 	</properties>
 
 	<!-- profile配置 -->
@@ -85,20 +86,29 @@
 		</profile>
 	</profiles>
 
+	<distributionManagement>
+		<!-- release发布仓库 -->
+		<repository>
+			<id>my-release-repo</id>
+			<name>my-release-repo</name>
+			<url>http://192.168.1.201:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<!-- snapshot发布仓库 -->
+		<snapshotRepository>
+			<id>my-snapshot-repo</id>
+			<name>my-snapshot-repo</name>
+			<url>http://192.168.1.201:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<!-- 依赖配置 -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>4.11</version>
+				<version>${junit.version}</version>
 				<scope>test</scope><!-- 只在测试范围内有效 -->
-			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.8.2</version>
-				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>log4j</groupId>
@@ -222,4 +232,10 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+	</dependencies>
 </project>
