@@ -19,6 +19,8 @@
 		<apache.commons.groupId>org.apache.commons</apache.commons.groupId>
 		<apache.jexl.version>2.1.1</apache.jexl.version>
 		<junit.version>4.11</junit.version>
+		<apache.poi.groupId>org.apache.poi</apache.poi.groupId>
+		<apache.poi.version>3.10-FINAL</apache.poi.version>
 	</properties>
 
 	<!-- profile配置 -->
@@ -229,6 +231,11 @@
 				<groupId>${apache.commons.groupId}</groupId>
 				<artifactId>commons-jexl</artifactId>
 				<version>${apache.jexl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${apache.poi.groupId}</groupId>
+				<artifactId>poi</artifactId>
+				<version>${apache.poi.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
