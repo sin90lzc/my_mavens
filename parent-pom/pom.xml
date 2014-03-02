@@ -21,10 +21,12 @@
 		<junit.version>4.11</junit.version>
 		<apache.poi.groupId>org.apache.poi</apache.poi.groupId>
 		<apache.poi.version>3.9</apache.poi.version>
-		
+
 		<!-- 自已的项目工程属性 -->
 		<my_util.groupId>com.sin90lzc.util</my_util.groupId>
 		<my_util.version>0.0.1-SNAPSHOT</my_util.version>
+
+
 	</properties>
 
 	<!-- profile配置 -->
@@ -241,8 +243,13 @@
 				<artifactId>poi</artifactId>
 				<version>${apache.poi.version}</version>
 			</dependency>
-		
-		<!-- 自己的项目工程依赖 -->
+			<dependency>
+				<groupId>${apache.poi.groupId}</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>${apache.poi.version}</version>
+			</dependency>
+
+			<!-- 自己的项目工程依赖 -->
 			<dependency>
 				<groupId>${my_util.groupId}</groupId>
 				<artifactId>my-util</artifactId>
