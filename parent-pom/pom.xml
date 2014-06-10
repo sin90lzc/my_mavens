@@ -20,6 +20,13 @@
 		<apache.jexl.version>2.1.1</apache.jexl.version>
 		<joda-time.groupId>joda-time</joda-time.groupId>
 		<joda-time.version>2.3</joda-time.version>
+		<junit.version>4.11</junit.version>
+		<apache.poi.groupId>org.apache.poi</apache.poi.groupId>
+		<apache.poi.version>3.9</apache.poi.version>
+
+		<!-- 自已的项目工程属性 -->
+		<my_util.groupId>com.sin90lzc.util</my_util.groupId>
+		<my_util.version>0.0.1-SNAPSHOT</my_util.version>
 	</properties>
 
 	<!-- profile配置 -->
@@ -87,13 +94,28 @@
 		</profile>
 	</profiles>
 
+	<distributionManagement>
+		<!-- release发布仓库 -->
+		<repository>
+			<id>my-release-repo</id>
+			<name>my-release-repo</name>
+			<url>http://192.168.1.201:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<!-- snapshot发布仓库 -->
+		<snapshotRepository>
+			<id>my-snapshot-repo</id>
+			<name>my-snapshot-repo</name>
+			<url>http://192.168.1.201:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<!-- 依赖配置 -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>4.11</version>
+				<version>${junit.version}</version>
 				<scope>test</scope><!-- 只在测试范围内有效 -->
 			</dependency>
 			<dependency>
@@ -217,9 +239,25 @@
 				<version>${apache.jexl.version}</version>
 			</dependency>
 			<dependency>
-			  <groupId>${joda-time.groupId}</groupId>
+			<groupId>${joda-time.groupId}</groupId>
 			  <artifactId>joda-time</artifactId>
 			  <version>${joda-time.version}</version>
+			</dependency>
+			<groupId>${apache.poi.groupId}</groupId>
+				<artifactId>poi</artifactId>
+				<version>${apache.poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${apache.poi.groupId}</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>${apache.poi.version}</version>
+			</dependency>
+
+			<!-- 自己的项目工程依赖 -->
+			<dependency>
+				<groupId>${my_util.groupId}</groupId>
+				<artifactId>my-util</artifactId>
+				<version>${my_util.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -231,5 +269,5 @@
 				<version>4.11</version>
 			</dependency>
 	</dependencies>
-	
+
 </project>
