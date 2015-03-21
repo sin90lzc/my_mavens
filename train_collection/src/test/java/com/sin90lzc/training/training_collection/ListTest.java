@@ -95,10 +95,20 @@ public class ListTest {
 		sub.set(0, "chicken");
 		Assert.assertEquals("chicken", sub.get(0));
 		Assert.assertEquals("chicken", list.get(1));
+		Assert.assertFalse("chicken".equals(array[1]));
+
 
 		list.set(2, "mouse");
 		Assert.assertEquals("mouse", sub.get(1));
 		Assert.assertEquals("mouse", list.get(2));
+		Assert.assertFalse("mouse".equals(array[2]));
+		
+		sub.add("pig");
+		Assert.assertEquals("pig", sub.get(2));
+		Assert.assertEquals("pig",list.get(3));
+		Assert.assertTrue(list.size()==5);
+		Assert.assertTrue(sub.size()==3);
+		
 	}
 
 	/**

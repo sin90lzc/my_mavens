@@ -23,7 +23,7 @@ public class ReplacementUtil {
 		ENGINE.setSilent(false);
 	}
 	
-	/**
+	/**`
 	 * 大文本变量替换
 	 * @param src
 	 * @param vars
@@ -43,7 +43,8 @@ public class ReplacementUtil {
 			Expression ex=ENGINE.createExpression(key);
 			String value=null;
 			if(vars.containsKey(key)){
-				value=ex.evaluate(context).toString();
+				//value=ex.evaluate(context).toString();
+				value=vars.get(key).toString();
 			}else{
 				value="("+key+":未定义变量"+")";
 			}

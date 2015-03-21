@@ -11,7 +11,7 @@
      http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
      http://www.springframework.org/schema/jee
      http://www.springframework.org/schema/jee/spring-jee-3.1.xsd">
-	<context:component-scan base-package="com.sin90lzc.train.spring_rpc"></context:component-scan>
+	<context:component-scan base-package="com.sin90lzc.train.spring_rpc" ></context:component-scan>
 
 	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<property name="service" ref="rpcService"></property>
