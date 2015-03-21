@@ -222,6 +222,7 @@ under the License.
     </profile>
     -->
     <!-- javadoc插件 -->
+    <!-- 
 	<profile>
 		<id>javadoc</id>
 		<build>
@@ -234,6 +235,7 @@ under the License.
 			</plugins>
 		</build>
 	</profile>
+	 -->
 	<profile>
 		<id>jboss_repo</id>
 		<repositories>
@@ -295,7 +297,7 @@ under the License.
   </activeProfiles>
   -->
   <activeProfiles>
-	<activeProfile>javadoc</activeProfile><!-- 激活javadoc插件 -->
+	<!--<activeProfile>javadoc</activeProfile> 激活javadoc插件 -->
 	<!-- <activeProfile>jboss_repo</activeProfile> -->
   </activeProfiles>
 </settings>
