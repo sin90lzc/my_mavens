@@ -252,6 +252,22 @@ under the License.
 			</repository>
 		</repositories>
 	</profile>
+	<profile>
+		<id>spring-test-mvc</id>
+		<repositories>
+			<repository>
+				<id>spring-test-mvc</id>
+				<name>spring-test-mvc</name>
+				<url>http://repo.springsource.org/libs-milestone</url>
+				<releases>
+					<enabled>true</enabled>
+				</releases>
+				<snapshots>
+					<enabled>false</enabled>
+				</snapshots>
+			</repository>
+		</repositories>
+	</profile>
     <!--
      | Here is another profile, activated by the system property 'target-env' with a value of 'dev',
      | which provides a specific path to the Tomcat instance. To use this, your plugin configuration
@@ -298,6 +314,7 @@ under the License.
   -->
   <activeProfiles>
 	<!--<activeProfile>javadoc</activeProfile> 激活javadoc插件 -->
-	<!-- <activeProfile>jboss_repo</activeProfile> -->
+		<activeProfile>jboss_repo</activeProfile>
+		<activeProfile>spring-test-mvc</activeProfile>
   </activeProfiles>
 </settings>
