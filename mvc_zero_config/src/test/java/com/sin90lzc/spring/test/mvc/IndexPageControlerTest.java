@@ -6,17 +6,17 @@
  */
 package com.sin90lzc.spring.test.mvc;
 
-import static org.springframework.test.web.server.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.server.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.springframework.test.web.server.setup.MockMvcBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.web.servlet.DispatcherServlet;
 
 import com.sin90lzc.spring.test.base.BaseMvcTest;
 
 /**
- * copyright 
+ * copyright
  * 
  * all right reserved.
  * 
@@ -26,14 +26,17 @@ import com.sin90lzc.spring.test.base.BaseMvcTest;
  */
 public class IndexPageControlerTest extends BaseMvcTest {
 
-	@Before
-	public void setup(){
-		mockMvc	= MockMvcBuilders.webApplicationContextSetup(webApplicationContext).build();
-	}
-	
 	@Test
-	public void accessIndex() throws Exception{
-		mockMvc.perform(get("/")).andExpect(status().isOk());
+	public void accessIndex() throws Exception {
+
+		mockMvc.perform(get("/index.html"))
+				.andExpect(
+						MockMvcResultMatchers
+								.request()
+								.attribute(
+										DispatcherServlet.WEB_APPLICATION_CONTEXT_ATTRIBUTE,
+										webApplicationContext))
+				.andExpect(status().isOk());
 	}
-	
+
 }
