@@ -18,7 +18,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+import org.springframework.transaction.PlatformTransactionManager;
 
 /**
  * copyright 
@@ -61,6 +63,13 @@ public class TestConfig {
 	public JdbcTemplate jdbcTemplate(DataSource dataSource){
 		JdbcTemplate t=new JdbcTemplate(dataSource);
 		return t;
+	}
+	
+	@Bean()
+	@Autowired
+	public PlatformTransactionManager transactionManager(DataSource dataSource){
+		DataSourceTransactionManager tm=new DataSourceTransactionManager(dataSource);
+		return tm;
 	}
 	
 }
