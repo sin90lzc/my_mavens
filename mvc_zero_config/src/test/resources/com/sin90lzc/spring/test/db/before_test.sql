@@ -1,0 +1,1 @@
+delete from before_class where id=1;
