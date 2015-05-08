@@ -161,13 +161,14 @@ under the License.
      | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
      | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
      |
+	 -->
     <mirror>
-      <id>mirrorId</id>
-      <mirrorOf>repositoryId</mirrorOf>
-      <name>Human Readable Name for this Mirror.</name>
-      <url>http://my.repository.com/repo/path</url>
+      <id>mirror_central</id>
+      <mirrorOf>central</mirrorOf>
+      <name>jboss_central</name>
+      <url>https://repository.jboss.org/nexus/content/repositories/central/</url>
     </mirror>
-     -->
+     
   </mirrors>
   
   <!-- profiles
