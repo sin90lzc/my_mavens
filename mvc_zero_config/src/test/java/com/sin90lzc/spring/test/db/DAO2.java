@@ -1,6 +1,6 @@
 /**
  *
- * created on 2015年4月25日 上午9:41:09
+ * created on 2015年5月24日 下午3:41:19
  * 
  * @author Tim Leung
  */
@@ -11,14 +11,12 @@ package com.sin90lzc.spring.test.db;
  * 
  * all right reserved.
  * 
- * created on 2015年4月25日 上午9:41:09
+ * created on 2015年5月24日 下午3:41:19
  * 
  * @author Tim Leung
  */
-public interface DAO {
+public interface DAO2 {
 
 	public void save() throws Exception;
-	
-	public void doSome() throws Exception;
 	
 }

@@ -12,6 +12,8 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.dbcp2.BasicDataSourceFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +23,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * copyright 
@@ -34,8 +37,12 @@ import org.springframework.transaction.PlatformTransactionManager;
  * @author Tim Leung
  */
 @Configuration
+@EnableTransactionManagement
 @Profile("test")
 public class TestConfig {
+	
+	private static final transient Log log=LogFactory.getLog(TestConfig.class);
+	
 
 	@Bean()
 	public DataSource dataSource() {
@@ -69,6 +76,15 @@ public class TestConfig {
 	@Autowired
 	public PlatformTransactionManager transactionManager(DataSource dataSource){
 		DataSourceTransactionManager tm=new DataSourceTransactionManager(dataSource);
+		//tm.setGlobalRollbackOnParticipationFailure(false);
+//		tm.setGlobalRollbackOnParticipationFailure(false);
+//		tm.setRollbackOnCommitFailure(true);
+		log.info("Transaction isFailEarlyOnGlobalRollbackOnly:"+tm.isFailEarlyOnGlobalRollbackOnly());
+		log.info("Transaction isGlobalRollbackOnParticipationFailure:"+tm.isGlobalRollbackOnParticipationFailure());
+		log.info("Transaction isNestedTransactionAllowed:"+tm.isNestedTransactionAllowed());
+		log.info("Transaction isRollbackOnCommitFailure:"+tm.isRollbackOnCommitFailure());
+		log.info("Transaction isValidateExistingTransaction:"+tm.isValidateExistingTransaction());
+
 		return tm;
 	}
 	
