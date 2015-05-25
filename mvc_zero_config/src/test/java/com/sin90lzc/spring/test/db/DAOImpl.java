@@ -9,6 +9,7 @@ package com.sin90lzc.spring.test.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -44,7 +45,7 @@ public class DAOImpl implements DAO {
 	 * override by Tim Leung
 	 **/
 	@Override
-	@Transactional(propagation=Propagation.REQUIRES_NEW,rollbackFor=Throwable.class)
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Throwable.class)
 	public void save() throws Exception{
 //		jdbcTemplate.update(new PreparedStatementCreator() {
 //			
@@ -57,8 +58,10 @@ public class DAOImpl implements DAO {
 //				return ps;
 //			}
 //		});
-		
+		TimeUnit.SECONDS.sleep(5);
 		jdbcTemplate.update("insert into before_class(id,name) values(?,?)", 101,"rain"); 
+		
+		TimeUnit.SECONDS.sleep(5);
 		
 	}
 	

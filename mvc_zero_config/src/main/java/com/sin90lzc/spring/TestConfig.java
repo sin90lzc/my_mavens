@@ -38,7 +38,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@Profile("test")
+//@Profile("test")
 public class TestConfig {
 	
 	private static final transient Log log=LogFactory.getLog(TestConfig.class);
@@ -51,6 +51,8 @@ public class TestConfig {
 		p.put("password", "123");
 		p.put("url", "jdbc:mysql://192.168.1.12:3306/test");
 		p.put("driverClassName","com.mysql.jdbc.Driver");
+		p.put("initialSize", "20");
+		p.put("maxTotal", "20");
 		BasicDataSource ds=null;
 		try {
 			ds = BasicDataSourceFactory.createDataSource(p);
@@ -59,9 +61,9 @@ public class TestConfig {
 		}
 		
 		//在启动单元测试的时候执行SQL，这种方式不是很好啊
-		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-		populator.addScript(new ClassPathResource("/test.sql"));
-		populator.execute(ds);
+//		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+//		populator.addScript(new ClassPathResource("/test.sql"));
+//		populator.execute(ds);
 		return ds;
 	}
 	
