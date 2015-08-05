@@ -4,8 +4,6 @@
 package com.sin90lc.java.exception;
 
 /**
- * copyright PPMoney
- * 
  *
  * @author liangzhicong
  * 
@@ -23,14 +21,52 @@ public class ArgumentIllegalityException extends Exception {
 	public ArgumentIllegalityException() {
 		super();
 	}
-	
-	public ArgumentIllegalityException(String msg){
-		super(msg);
+
+	/**
+	 * 
+	 * @category 
+	 * 
+	 *
+	 * @author liangzhicong
+	 */
+	public ArgumentIllegalityException(String message, Throwable cause,
+			boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
 	}
-	
-	public ArgumentIllegalityException(Throwable e){
-		super(e);
+
+	/**
+	 * 
+	 * @category 
+	 * 
+	 *
+	 * @author liangzhicong
+	 */
+	public ArgumentIllegalityException(String message, Throwable cause) {
+		super(message, cause);
 	}
+
+	/**
+	 * 
+	 * @category 
+	 * 
+	 *
+	 * @author liangzhicong
+	 */
+	public ArgumentIllegalityException(String message) {
+		super(message);
+	}
+
+	/**
+	 * 
+	 * @category 
+	 * 
+	 *
+	 * @author liangzhicong
+	 */
+	public ArgumentIllegalityException(Throwable cause) {
+		super(cause);
+	}
+
 	
 	
 	

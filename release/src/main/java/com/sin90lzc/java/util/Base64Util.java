@@ -9,7 +9,6 @@ import java.io.ByteArrayOutputStream;
 import com.sin90lc.java.exception.ArgumentIllegalityException;
 
 /**
- * copyright PPMoney
  * 
  * 
  * @author liangzhicong
