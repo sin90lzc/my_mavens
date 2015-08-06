@@ -231,58 +231,363 @@ public class SortUtils {
 			}
 		}
 	}
-	
-	private static <K,T extends Comparable<K>> void sortByKuaiPai(List<T> src,SortDirect direct){
-		
+	/**
+	 * 
+	 * 
+	 * @category 快排算法
+	 * @param src
+	 * @param direct
+	 *
+	 * @author liangzhicong
+	 */
+	private static <T extends Comparable<T>> void sortByQuick(List<T> src,SortDirect direct){
+		if(src!=null && src.size()>0)
+			sortByQuick(src, 0, src.size()-1, direct);
+	}
+	/**
+	 * 
+	 * 
+	 * @category  快排算法
+	 * @param src
+	 * @param direct
+	 *
+	 * @author liangzhicong
+	 */
+	private static <T extends Comparable<T>> void sortByQuick(T[] src,SortDirect direct){
+		if(src!=null && src.length>0)
+			sortByQuick(src, 0, src.length-1, direct);
+	}
+	/**
+	 * 
+	 * 
+	 * @category  快排算法
+	 * @param src
+	 * @param direct
+	 *
+	 * @author liangzhicong
+	 */
+	private static void sortByQuick(int[] src,SortDirect direct){
+		if(src!=null && src.length>0)
+			sortByQuick(src, 0, src.length-1, direct);
+	}
+
+	/**
+	 * 
+	 * 
+	 * @category  快排算法
+	 * @param src
+	 * @param direct
+	 *
+	 * @author liangzhicong
+	 */
+	private static void sortByQuick(long[] src,SortDirect direct){
+		if(src!=null && src.length>0)
+			sortByQuick(src, 0, src.length-1, direct);
+	}
+	/**
+	 * 
+	 * 
+	 * @category  快排算法
+	 * @param src
+	 * @param direct
+	 *
+	 * @author liangzhicong
+	 */
+	private static void sortByQuick(float[] src,SortDirect direct){
+		if(src!=null && src.length>0)
+			sortByQuick(src, 0, src.length-1, direct);
+	}
+	/**
+	 * 
+	 * 
+	 * @category  快排算法
+	 * @param src
+	 * @param direct
+	 *
+	 * @author liangzhicong
+	 */
+	private static void sortByQuick(double[] src,SortDirect direct){
+		if(src!=null && src.length>0)
+			sortByQuick(src, 0, src.length-1, direct);
 	}
 	
-	private static <K,T extends Comparable<K>> void sortByKuaiPai(T[] src,SortDirect direct){
-		
-	}
-	
-	private static void sortByKuaiPai(int[] src,SortDirect direct){
-		if(src==null || src.length<1){
-			return;
-		}
-		sortByKuaiPai(src, 0, src.length-1, direct);
-	}
-	
-	private static void sortByKuaiPai(int[] src,int startPoint,int endPoint,SortDirect direct){
-		int base=src[startPoint];
+	/**
+	 * 
+	 * 
+	 * @category 快排算法
+	 * @param src
+	 * @param direct
+	 *
+	 * @author liangzhicong
+	 */
+	private static <T extends Comparable<T>> void sortByQuick(List<T> src,int startPoint,int endPoint,SortDirect direct){
+
 		int leftPoint=0;
 		int rightPoint=endPoint;
-		boolean isLeft=false;
-		while(leftPoint!=rightPoint&&leftPoint<endPoint&&rightPoint>startPoint){
-			if(src[rightPoint]<base&&!isLeft){
-				src[leftPoint]=src[rightPoint];
-				isLeft=true;
-			}else{
-				rightPoint--;
+		if(direct==ASC){
+			T base=src.get(startPoint);
+			while(leftPoint<rightPoint){
+				while(src.get(rightPoint).compareTo(base)>=0&&leftPoint<rightPoint){
+					rightPoint--;
+				}
+				src.set(leftPoint, src.get(rightPoint));
+				while(src.get(leftPoint).compareTo(base)<=0&&leftPoint<rightPoint){
+					leftPoint++;
+				}
+				src.set(rightPoint, src.get(leftPoint));
 			}
-			if(src[leftPoint]>base&&isLeft){
-				src[rightPoint]=src[leftPoint];
-				isLeft=false;
-			}else{
-				leftPoint++;
+			src.set(leftPoint, base);
+		}else{
+			T base=src.get(endPoint);
+			while(leftPoint<rightPoint){
+				while(src.get(leftPoint).compareTo(base)>=0&&leftPoint<rightPoint){
+					leftPoint++;
+				}
+				src.set(rightPoint, src.get(leftPoint));
+				while(src.get(rightPoint).compareTo(base)<=0&&leftPoint<rightPoint){
+					rightPoint--;
+				}
+				src.set(leftPoint,src.get(rightPoint));
 			}
+			src.set(leftPoint, base);
 		}
-		if(startPoint!=leftPoint)
-			sortByKuaiPai(src,startPoint,leftPoint,direct);
-		if(endPoint!=rightPoint)
-			sortByKuaiPai(src,rightPoint,endPoint,direct);
+		if(startPoint<leftPoint)
+			sortByQuick(src,startPoint,leftPoint-1,direct);
+		if(endPoint>rightPoint+1)
+			sortByQuick(src,rightPoint+1,endPoint,direct);
+	}
+	/**
+	 * 
+	 * 
+	 * @category  快排算法
+	 * @param src
+	 * @param direct
+	 *
+	 * @author liangzhicong
+	 */
+	private static <T extends Comparable<T>> void sortByQuick(T[] src,int startPoint,int endPoint,SortDirect direct){
+
+		int leftPoint=0;
+		int rightPoint=endPoint;
+		if(direct==ASC){
+			T base=src[startPoint];
+			while(leftPoint<rightPoint){
+				while(src[rightPoint].compareTo(base)>=0&&leftPoint<rightPoint){
+					rightPoint--;
+				}
+				src[leftPoint]=src[rightPoint];
+				while(src[leftPoint].compareTo(base)<=0&&leftPoint<rightPoint){
+					leftPoint++;
+				}
+				src[rightPoint]=src[leftPoint];
+			}
+			src[leftPoint]=base;
+		}else{
+			T base=src[endPoint];
+			while(leftPoint<rightPoint){
+				while(src[leftPoint].compareTo(base)>=0&&leftPoint<rightPoint){
+					leftPoint++;
+				}
+				src[rightPoint]=src[leftPoint];
+				while(src[rightPoint].compareTo(base)<=0&&leftPoint<rightPoint){
+					rightPoint--;
+				}
+				src[leftPoint]=src[rightPoint];
+			}
+			src[leftPoint]=base;
+		}
+		if(startPoint<leftPoint)
+			sortByQuick(src,startPoint,leftPoint-1,direct);
+		if(endPoint>rightPoint+1)
+			sortByQuick(src,rightPoint+1,endPoint,direct);
+	}
+
+	/**
+	 * 
+	 * 
+	 * @category  快排算法
+	 * @param src
+	 * @param direct
+	 *
+	 * @author liangzhicong
+	 */
+	private static void sortByQuick(long[] src,int startPoint,int endPoint,SortDirect direct){
+		
+		int leftPoint=0;
+		int rightPoint=endPoint;
+		if(direct==ASC){
+			long base=src[startPoint];
+			while(leftPoint<rightPoint){
+				while(src[rightPoint]>=base&&leftPoint<rightPoint){
+					rightPoint--;
+				}
+				src[leftPoint]=src[rightPoint];
+				while(src[leftPoint]<=base&&leftPoint<rightPoint){
+					leftPoint++;
+				}
+				src[rightPoint]=src[leftPoint];
+			}
+			src[leftPoint]=base;
+		}else{
+			long base=src[endPoint];
+			while(leftPoint<rightPoint){
+				while(src[leftPoint]>=base&&leftPoint<rightPoint){
+					leftPoint++;
+				}
+				src[rightPoint]=src[leftPoint];
+				while(src[rightPoint]<=base&&leftPoint<rightPoint){
+					rightPoint--;
+				}
+				src[leftPoint]=src[rightPoint];
+			}
+			src[leftPoint]=base;
+		}
+		if(startPoint<leftPoint)
+			sortByQuick(src,startPoint,leftPoint-1,direct);
+		if(endPoint>rightPoint+1)
+			sortByQuick(src,rightPoint+1,endPoint,direct);
+	}
+	/**
+	 * 
+	 * 
+	 * @category  快排算法
+	 * @param src
+	 * @param direct
+	 *
+	 * @author liangzhicong
+	 */
+	private static void sortByQuick(float[] src,int startPoint,int endPoint,SortDirect direct){
+		
+		int leftPoint=0;
+		int rightPoint=endPoint;
+		if(direct==ASC){
+			float base=src[startPoint];
+			while(leftPoint<rightPoint){
+				while(src[rightPoint]>=base&&leftPoint<rightPoint){
+					rightPoint--;
+				}
+				src[leftPoint]=src[rightPoint];
+				while(src[leftPoint]<=base&&leftPoint<rightPoint){
+					leftPoint++;
+				}
+				src[rightPoint]=src[leftPoint];
+			}
+			src[leftPoint]=base;
+		}else{
+			float base=src[endPoint];
+			while(leftPoint<rightPoint){
+				while(src[leftPoint]>=base&&leftPoint<rightPoint){
+					leftPoint++;
+				}
+				src[rightPoint]=src[leftPoint];
+				while(src[rightPoint]<=base&&leftPoint<rightPoint){
+					rightPoint--;
+				}
+				src[leftPoint]=src[rightPoint];
+			}
+			src[leftPoint]=base;
+		}
+		if(startPoint<leftPoint)
+			sortByQuick(src,startPoint,leftPoint-1,direct);
+		if(endPoint>rightPoint+1)
+			sortByQuick(src,rightPoint+1,endPoint,direct);
+	}
+	/**
+	 * 
+	 * 
+	 * @category  快排算法
+	 * @param src
+	 * @param direct
+	 *
+	 * @author liangzhicong
+	 */
+	private static void sortByQuick(double[] src,int startPoint,int endPoint,SortDirect direct){
+		
+		int leftPoint=0;
+		int rightPoint=endPoint;
+		if(direct==ASC){
+			double base=src[startPoint];
+			while(leftPoint<rightPoint){
+				while(src[rightPoint]>=base&&leftPoint<rightPoint){
+					rightPoint--;
+				}
+				src[leftPoint]=src[rightPoint];
+				while(src[leftPoint]<=base&&leftPoint<rightPoint){
+					leftPoint++;
+				}
+				src[rightPoint]=src[leftPoint];
+			}
+			src[leftPoint]=base;
+		}else{
+			double base=src[endPoint];
+			while(leftPoint<rightPoint){
+				while(src[leftPoint]>=base&&leftPoint<rightPoint){
+					leftPoint++;
+				}
+				src[rightPoint]=src[leftPoint];
+				while(src[rightPoint]<=base&&leftPoint<rightPoint){
+					rightPoint--;
+				}
+				src[leftPoint]=src[rightPoint];
+			}
+			src[leftPoint]=base;
+		}
+		if(startPoint<leftPoint)
+			sortByQuick(src,startPoint,leftPoint-1,direct);
+		if(endPoint>rightPoint+1)
+			sortByQuick(src,rightPoint+1,endPoint,direct);
 	}
 	
-	private static void sortByKuaiPai(long[] src,SortDirect direct){
+	/**
+	 * 
+	 * 
+	 * @category  快排算法
+	 * @param src
+	 * @param startPoint
+	 * @param endPoint
+	 * @param direct
+	 *
+	 * @author liangzhicong
+	 */
+	private static void sortByQuick(int[] src,int startPoint,int endPoint,SortDirect direct){
 		
+		int leftPoint=0;
+		int rightPoint=endPoint;
+		if(direct==ASC){
+			int base=src[startPoint];
+			while(leftPoint<rightPoint){
+				while(src[rightPoint]>=base&&leftPoint<rightPoint){
+					rightPoint--;
+				}
+				src[leftPoint]=src[rightPoint];
+				while(src[leftPoint]<=base&&leftPoint<rightPoint){
+					leftPoint++;
+				}
+				src[rightPoint]=src[leftPoint];
+			}
+			src[leftPoint]=base;
+		}else{
+			int base=src[endPoint];
+			while(leftPoint<rightPoint){
+				while(src[leftPoint]>=base&&leftPoint<rightPoint){
+					leftPoint++;
+				}
+				src[rightPoint]=src[leftPoint];
+				while(src[rightPoint]<=base&&leftPoint<rightPoint){
+					rightPoint--;
+				}
+				src[leftPoint]=src[rightPoint];
+			}
+			src[leftPoint]=base;
+		}
+		if(startPoint<leftPoint)
+			sortByQuick(src,startPoint,leftPoint-1,direct);
+		if(endPoint>rightPoint+1)
+			sortByQuick(src,rightPoint+1,endPoint,direct);
 	}
-	private static void sortByKuaiPai(float[] src,SortDirect direct){
-		
-	}
-	private static void sortByKuaiPai(double[] src,SortDirect direct){
-		
-	}
+	
 	public static void main(String[] args) {
-		int[] arr=new int[]{8,0,1,4,3,5,8};
+		int[] arr=new int[]{8,0,1,4,3,5,8,7};
 //		List<Integer> list=new ArrayList<Integer>();
 //		list.add(8);
 //		list.add(0);
@@ -291,7 +596,7 @@ public class SortUtils {
 //		list.add(3);
 //		list.add(5);
 //		list.add(8);
-		sortByKuaiPai(arr,ASC);
+		sortByQuick(arr,DESC);
 		for(Integer a:arr){
 			System.out.print(a);
 			System.out.print(",");
