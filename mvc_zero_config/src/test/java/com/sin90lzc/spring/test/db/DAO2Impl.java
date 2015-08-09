@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sin90lzc.transiaction.BusinessTransiaction;
+import com.sin90lzc.transiaction.BusinessTransiactionManager;
+
 /**
  * copyright 
  * 
@@ -33,6 +36,33 @@ public class DAO2Impl implements DAO2{
 	@Transactional(propagation=Propagation.REQUIRES_NEW,rollbackFor=Throwable.class)
 	public void save() throws Exception {
 		jdbcTemplate.update("insert into before_class(id,name) values(?,?)", 101,"rain"); 
+		BusinessTransiactionManager.addBusinessTransiaction(new TestBusinessTransiaction("tim"));
+	}
+	
+	
+	static class TestBusinessTransiaction extends BusinessTransiaction{
+
+		private String name;
+		TestBusinessTransiaction(String name){
+			this.name=name;
+		}
+		/**
+		 * 
+		 * override by Tim Leung
+		 **/
+		@Override
+		public void doAfterCommit() {
+			System.out.println(name+" commit!");
+		}
+
+		/**
+		 * 
+		 * override by Tim Leung
+		 **/
+		@Override
+		public void doAfterRollBack() {
+			System.out.println(name+" rollback!");
+		}
 		
 	}
 	

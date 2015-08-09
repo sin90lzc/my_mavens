@@ -12,12 +12,16 @@ import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.sin90lzc.transiaction.BusinessTransiaction;
+import com.sin90lzc.transiaction.BusinessTransiactionManager;
 
 /**
  * copyright 
@@ -45,7 +49,7 @@ public class DAOImpl implements DAO {
 	 * override by Tim Leung
 	 **/
 	@Override
-	@Transactional(propagation=Propagation.REQUIRED,rollbackFor=Throwable.class)
+	@Transactional(propagation=Propagation.REQUIRES_NEW,rollbackFor=Throwable.class)
 	public void save() throws Exception{
 //		jdbcTemplate.update(new PreparedStatementCreator() {
 //			
@@ -73,8 +77,19 @@ public class DAOImpl implements DAO {
 	@Transactional(propagation=Propagation.REQUIRES_NEW,rollbackFor=Throwable.class)
 	public void doSome() throws Exception{
 		jdbcTemplate.update("insert into before_class(id,name) values(?,?)", 100,"tim"); 
-		
-		save();
+		BusinessTransiactionManager.addBusinessTransiaction(new BusinessTransiaction() {
+			
+			@Override
+			public void doAfterRollBack() {
+				System.out.println("doSome rollback!");
+			}
+			
+			@Override
+			public void doAfterCommit() {
+				System.out.println("doSome commit!");
+			}
+		});
+		dao2.save();
 		if(true){
 			throw new Exception("x");
 		}
