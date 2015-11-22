@@ -36,8 +36,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * 
  * @author Tim Leung
  */
-@Configuration
-@EnableTransactionManagement
+//@Configuration
+//@EnableTransactionManagement
 //@Profile("test")
 public class TestConfig {
 	

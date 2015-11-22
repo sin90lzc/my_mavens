@@ -1,23 +1,12 @@
 package com.sin90lzc.spring;
 
-import java.util.Properties;
-
-import javax.sql.DataSource;
-
-import org.apache.commons.dbcp2.BasicDataSource;
-import org.apache.commons.dbcp2.BasicDataSourceFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
@@ -44,10 +33,24 @@ public class GlobalConfig extends WebMvcConfigurerAdapter {
 		InternalResourceViewResolver resolver=new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/pages/");
 		resolver.setSuffix(".jsp");
+		resolver.setOrder(2);
 		return resolver;
 	}
 	
+	@Bean
+	public ViewResolver staticResourceViewResolver(){
+		InternalResourceViewResolver resolver=new InternalResourceViewResolver();
+		resolver.setPrefix("/public-resources/");
+		resolver.setSuffix("");
+		resolver.setOrder(0);
+		return resolver;
+	}
 	
+//	@Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/resources/**")
+//                .addResourceLocations("/public-resources/");
+//    }
 	
 	/**
 	 * 如果不添加defaultServletHandling，将访问不了/WEB-INF/下的文件，具体原因还不太清楚，好像是设置了该置之后，才能以项目根目录开始访问

@@ -1,0 +1,14 @@
+<div>
+	<input type="button" ng-hide="isLogin" value="登录" ng-click="login()"/>
+	<div ng-hide="!isLogin">
+	<span>欢迎，{{username}}</span>
+	
+	<ul>
+		<li ng-repeat="book in bookList">
+			<a ng-href="./bookDetail.html?id={{bookId}}">{{bookId+":"+bookName}}</a>
+		</li>
+	</ul>
+	
+	</div>
+	
+</div>
