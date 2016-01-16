@@ -19,7 +19,6 @@ import org.springframework.web.servlet.mvc.LastModified;
  * 
  * all right reserved.
  * 
- * created on 2015年4月6日 下午2:26:41
  * 
  * @author Tim Leung
  */

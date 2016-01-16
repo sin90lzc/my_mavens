@@ -53,7 +53,7 @@ public class GlobalConfig extends WebMvcConfigurerAdapter {
 //    }
 	
 	/**
-	 * Èç¹û²»Ìí¼ÓdefaultServletHandling£¬½«·ÃÎÊ²»ÁË/WEB-INF/ÏÂµÄÎÄ¼ş£¬¾ßÌåÔ­Òò»¹²»Ì«Çå³ş£¬ºÃÏñÊÇÉèÖÃÁË¸ÃÖÃÖ®ºó£¬²ÅÄÜÒÔÏîÄ¿¸ùÄ¿Â¼¿ªÊ¼·ÃÎÊ
+	 * å¦‚æœä¸æ·»åŠ defaultServletHandlingï¼Œå°†è®¿é—®ä¸äº†/WEB-INF/ä¸‹çš„æ–‡ä»¶ï¼Œå…·ä½“åŸå› è¿˜ä¸å¤ªæ¸…æ¥šï¼Œå¥½åƒæ˜¯è®¾ç½®äº†è¯¥ç½®ä¹‹åï¼Œæ‰èƒ½ä»¥é¡¹ç›®æ ¹ç›®å½•å¼€å§‹è®¿é—®
 	 * override by Tim Leung
 	 **/
 	@Override

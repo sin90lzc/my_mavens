@@ -1,6 +1,6 @@
 /**
  *
- * created on 2015Äê4ÔÂ19ÈÕ ÏÂÎç6:07:39
+ * created on 2015å¹´4æœˆ19æ—¥ ä¸‹åˆ6:07:39
  * 
  * @author Tim Leung
  */
@@ -28,13 +28,13 @@ import com.sin90lzc.spring.test.base.BaseTest;
  * 
  * all right reserved.
  * 
- * created on 2015Äê4ÔÂ19ÈÕ ÏÂÎç6:07:39
+ * created on 2015å¹´4æœˆ19æ—¥ ä¸‹åˆ6:07:39
  * 
- * ²âÊÔÔÚclass¼¶±ğºÍmethod¼¶±ğÊ¹ÓÃ@Sql£¬¿ÉÒÔ¿´³ö£¬method¼¶±ğµÄ@Sql»á¸²¸Çclass¼¶±ğµÄ@SqlÅäÖÃ
+ * æµ‹è¯•åœ¨classçº§åˆ«å’Œmethodçº§åˆ«ä½¿ç”¨@Sqlï¼Œå¯ä»¥çœ‹å‡ºï¼Œmethodçº§åˆ«çš„@Sqlä¼šè¦†ç›–classçº§åˆ«çš„@Sqlé…ç½®
  * 
- * @Rollback ×¢½âÖ»¶ÔÔÚ@Transactional·¶Î§ÄÚµÄÓï¾äÓĞĞ§£¡£¡£¡£¡
+ * @Rollback æ³¨è§£åªå¯¹åœ¨@TransactionalèŒƒå›´å†…çš„è¯­å¥æœ‰æ•ˆï¼ï¼ï¼ï¼
  * 
- * @BeforeºÍ@After¶¼ÔÚÊÂÎñ·¶Î§ÄÚ£¬¶ø@BeforeTransactionºÍ@AfterTransaction²»ÔÚÊÂÎñ·¶Î§ÄÚ¡£
+ * @Beforeå’Œ@Afteréƒ½åœ¨äº‹åŠ¡èŒƒå›´å†…ï¼Œè€Œ@BeforeTransactionå’Œ@AfterTransactionä¸åœ¨äº‹åŠ¡èŒƒå›´å†…ã€‚
  * 
  * @author Tim Leung
  */

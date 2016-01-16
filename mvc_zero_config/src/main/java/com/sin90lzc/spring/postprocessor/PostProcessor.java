@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年5月24日 下午7:31:09
  * 
  * @author Tim Leung
  */
@@ -15,10 +14,8 @@ import org.springframework.stereotype.Component;
  * 
  * all right reserved.
  * 
- * bean的后处理器
  * 
  * 
- * created on 2015年5月24日 下午7:31:09
  * 
  * @author Tim Leung
  */

@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年4月19日 下午2:46:00
  * 
  * @author Tim Leung
  */
@@ -30,9 +29,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * 
  * all right reserved.
  * 
- * created on 2015年4月19日 下午2:46:00
  * 
- * 该ApplicationContext用于单元测试
+ * 璇pplicationContext鐢ㄤ簬鍗曞厓娴嬭瘯
  * 
  * @author Tim Leung
  */
@@ -60,7 +58,7 @@ public class TestConfig {
 			e.printStackTrace();
 		}
 		
-		//在启动单元测试的时候执行SQL，这种方式不是很好啊
+		//鍦ㄥ惎鍔ㄥ崟鍏冩祴璇曠殑鏃跺�欐墽琛孲QL锛岃繖绉嶆柟寮忎笉鏄緢濂藉晩
 //		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
 //		populator.addScript(new ClassPathResource("/test.sql"));
 //		populator.execute(ds);

@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年5月17日 下午6:09:45
  * 
  * @author Tim Leung
  */
@@ -22,7 +21,6 @@ import org.springframework.web.servlet.mvc.LastModified;
  * 
  * all right reserved.
  * 
- * created on 2015年5月17日 下午6:09:45
  * 
  * @author Tim Leung
  */

@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年8月8日 下午8:06:59
  * 
  * @author Tim Leung
  */
@@ -11,7 +10,6 @@ package com.sin90lzc.spring.test;
  * 
  * all right reserved.
  * 
- * created on 2015年8月8日 下午8:06:59
  * 
  * @author Tim Leung
  */

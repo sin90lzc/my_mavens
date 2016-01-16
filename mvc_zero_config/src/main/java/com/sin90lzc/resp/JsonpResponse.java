@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年11月21日 下午5:25:17
  * 
  * @author Tim Leung
  */
@@ -17,7 +16,6 @@ import com.sin90lzc.util.GsonFactory;
  * 
  * all right reserved.
  * 
- * created on 2015年11月21日 下午5:25:17
  * 
  * @author Tim Leung
  */

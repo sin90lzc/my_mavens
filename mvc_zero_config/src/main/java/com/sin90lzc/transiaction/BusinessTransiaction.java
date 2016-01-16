@@ -1,6 +1,6 @@
 /**
  *
- * created on 2015Äê8ÔÂ9ÈÕ ÏÂÎç3:40:53
+ * created on 2015å¹´8æœˆ9æ—¥ ä¸‹åˆ3:40:53
  * 
  * @author Tim Leung
  */
@@ -11,40 +11,40 @@ import org.springframework.transaction.support.TransactionSynchronizationAdapter
 /**
  * copyright 
  * 
- * ÒµÎñÂß¼­ÊÂÎñ
+ * ä¸šåŠ¡é€»è¾‘äº‹åŠ¡
  * 
  * all right reserved.
  * 
- * created on 2015Äê8ÔÂ9ÈÕ ÏÂÎç3:40:53
+ * created on 2015å¹´8æœˆ9æ—¥ ä¸‹åˆ3:40:53
  * 
  * @author Tim Leung
  */
 public abstract class BusinessTransiaction extends TransactionSynchronizationAdapter{
 
 	/**
-	 * ÎªÎÒÃÇÌá¹©ÁËÒ»¸öÊ±»ú£¬¿ÉÒÔÔÚÊÂÎñÌá½»ºó´¦ÀíÒ»Ğ©ÊÂÇé
+	 * ä¸ºæˆ‘ä»¬æä¾›äº†ä¸€ä¸ªæ—¶æœºï¼Œå¯ä»¥åœ¨äº‹åŠ¡æäº¤åå¤„ç†ä¸€äº›äº‹æƒ…
 	 *  
 	 * @author Tim Leung
 	 * 
-	 * create on 2015 2015Äê8ÔÂ9ÈÕ ÏÂÎç3:57:08
+	 * create on 2015 2015å¹´8æœˆ9æ—¥ ä¸‹åˆ3:57:08
 	 */
 	public abstract void doAfterCommit();
 	
 	/**
-	 * ÎªÎÒÃÇÌá¹©ÁËÒ»¸öÊ±»ú£¬¿ÉÒÔÔÚÊÂÎñ»Ø¹öºó´¦ÀíÒ»Ğ©ÊÂÇé
+	 * ä¸ºæˆ‘ä»¬æä¾›äº†ä¸€ä¸ªæ—¶æœºï¼Œå¯ä»¥åœ¨äº‹åŠ¡å›æ»šåå¤„ç†ä¸€äº›äº‹æƒ…
 	 *  
 	 * @author Tim Leung
 	 * 
-	 * create on 2015 2015Äê8ÔÂ9ÈÕ ÏÂÎç3:57:52
+	 * create on 2015 2015å¹´8æœˆ9æ—¥ ä¸‹åˆ3:57:52
 	 */
 	public abstract void doAfterRollBack();
 	
 	/**
-	 * ÎªÎÒÃÇÌá¹©ÁËÒ»¸öÊ±»ú£¬¿ÉÒÔÔÚÊÂÎñ»Ø¹öÇ°»òÌá½»Ç°´¦ÀíÒ»Ğ©ÊÂÇé
+	 * ä¸ºæˆ‘ä»¬æä¾›äº†ä¸€ä¸ªæ—¶æœºï¼Œå¯ä»¥åœ¨äº‹åŠ¡å›æ»šå‰æˆ–æäº¤å‰å¤„ç†ä¸€äº›äº‹æƒ…
 	 *  
 	 * @author Tim Leung
 	 * 
-	 * create on 2015 2015Äê8ÔÂ9ÈÕ ÏÂÎç4:01:01
+	 * create on 2015 2015å¹´8æœˆ9æ—¥ ä¸‹åˆ4:01:01
 	 */
 	protected void doBeforeCommit(){
 		

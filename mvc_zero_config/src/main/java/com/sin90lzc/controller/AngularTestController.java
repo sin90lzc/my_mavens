@@ -1,6 +1,6 @@
 /**
  *
- * created on 2015Äê11ÔÂ22ÈÕ ÉÏÎç10:18:41
+ * created on 2015ï¿½ï¿½11ï¿½ï¿½22ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½10:18:41
  * 
  * @author Tim Leung
  */
@@ -30,7 +30,7 @@ import com.sin90lzc.resp.CorsResponse;
  * 
  * all right reserved.
  * 
- * created on 2015Äê11ÔÂ22ÈÕ ÉÏÎç10:18:41
+ * created on 2015ï¿½ï¿½11ï¿½ï¿½22ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½10:18:41
  * 
  * @author Tim Leung
  */
@@ -38,11 +38,11 @@ import com.sin90lzc.resp.CorsResponse;
 public class AngularTestController {
 
 	/**
-	 * @category CORSµÄËùÓĞoptionsÇëÇó¶¼Í¨¹ı¸Ã·½·¨·µ»Ø
+	 * @category CORSçš„æ‰€æœ‰optionsè¯·æ±‚éƒ½é€šè¿‡è¯¥æ–¹æ³•è¿”å›
 	 *  
 	 * @author Tim Leung
 	 * 
-	 * create on 2015 2015Äê11ÔÂ22ÈÕ ÏÂÎç9:46:20
+	 * created on 2015å¹´11æœˆ22æ—¥ ä¸Šåˆ10:18:41
 	 * @param id
 	 * @param request
 	 * @return
@@ -66,11 +66,11 @@ public class AngularTestController {
 	
 	
 	/**
-	 * @category ÊÇ·ñµÇÂ¼
+	 * @category æ˜¯å¦ç™»å½•
 	 *  
 	 * @author Tim Leung
 	 * 
-	 * create on 2015 2015Äê11ÔÂ22ÈÕ ÉÏÎç10:19:20
+	 * create on 2015 2015å¹´11æœˆ22æ—¥ ä¸Šåˆ10:19:20
 	 * @return
 	 */
 	@RequestMapping(value="cors/isLogin",method={RequestMethod.POST})
@@ -81,11 +81,11 @@ public class AngularTestController {
 		Map<String,Object> ret=new HashMap<String,Object>();
 		if(id!=null && id.equals("Tim")){
 			ret.put("status", true);
-			ret.put("msg", "µÇÂ¼³É¹¦");
+			ret.put("msg", "ï¿½ï¿½Â¼ï¿½É¹ï¿½");
 			ret.put("user", "Tim");
 		}else{
 			ret.put("status", false);
-			ret.put("msg", "ÇëµÇÂ¼");
+			ret.put("msg", "ï¿½ï¿½ï¿½Â¼");
 		}
 		
 		return CorsResponse.build(ret);
@@ -103,11 +103,11 @@ public class AngularTestController {
 		
 	}
 	/**
-	 * @category »ñÈ¡Êé±¾ÁĞ±í
+	 * @category è·å–ä¹¦æœ¬åˆ—è¡¨
 	 *  
 	 * @author Tim Leung
 	 * 
-	 * create on 2015 2015Äê11ÔÂ22ÈÕ ÉÏÎç10:29:21
+	 * create on 2015 2015å¹´11æœˆ22æ—¥ ä¸Šåˆ10:31:49
 	 * @return
 	 */
 	@RequestMapping(value="cors/getBookList",method={RequestMethod.POST})
@@ -123,11 +123,11 @@ public class AngularTestController {
 	}
 	
 	/**
-	 * @category »ñÈ¡Êé±¾Ã÷Ï¸
+	 * @category è·å–ä¹¦æœ¬æ˜ç»†
 	 *  
 	 * @author Tim Leung
 	 * 
-	 * create on 2015 2015Äê11ÔÂ22ÈÕ ÉÏÎç10:31:49
+	 * create on 2015 2015ï¿½ï¿½11ï¿½ï¿½22ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½10:31:49
 	 * @return
 	 */
 	@RequestMapping(value="cors/getBookDetail",method={RequestMethod.POST})

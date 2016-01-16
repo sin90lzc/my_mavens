@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年4月12日 下午4:15:40
  * 
  * @author Tim Leung
  */
@@ -19,7 +18,6 @@ import org.springframework.mock.jndi.SimpleNamingContextBuilder;
  * 
  * all right reserved.
  * 
- * created on 2015年4月12日 下午4:15:40
  * 
  * @author Tim Leung
  */

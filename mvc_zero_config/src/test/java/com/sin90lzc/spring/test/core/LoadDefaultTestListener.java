@@ -1,6 +1,6 @@
 /**
  *
- * created on 2015Äê4ÔÂ19ÈÕ ÏÂÎç2:54:00
+ * created on 2015å¹´4æœˆ19æ—¥ ä¸‹åˆ2:54:00
  * 
  * @author Tim Leung
  */
@@ -17,9 +17,9 @@ import com.sin90lzc.spring.test.base.BaseTest;
  * 
  * all right reserved.
  * 
- * created on 2015Äê4ÔÂ19ÈÕ ÏÂÎç2:54:00
+ * created on 2015å¹´4æœˆ19æ—¥ ä¸‹åˆ2:54:00
  * 
- * ²âÊÔ´Ó@TestExecutionListenersµÄÊ¹ÓÃ
+ * æµ‹è¯•ä»@TestExecutionListenersçš„ä½¿ç”¨
  * 
  * 
  * @author Tim Leung

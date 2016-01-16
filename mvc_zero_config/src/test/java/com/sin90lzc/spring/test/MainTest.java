@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年5月25日 下午10:18:27
  * 
  * @author Tim Leung
  */
@@ -24,7 +23,6 @@ import com.sin90lzc.spring.test.db.DAO;
  * 
  * all right reserved.
  * 
- * created on 2015年5月25日 下午10:18:27
  * 
  * @author Tim Leung
  */

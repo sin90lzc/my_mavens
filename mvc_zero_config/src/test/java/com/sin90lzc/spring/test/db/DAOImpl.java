@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年4月25日 上午9:42:06
  * 
  * @author Tim Leung
  */
@@ -28,7 +27,6 @@ import com.sin90lzc.transiaction.BusinessTransiactionManager;
  * 
  * all right reserved.
  * 
- * created on 2015年4月25日 上午9:42:06
  * 
  * @author Tim Leung
  */

@@ -18,7 +18,6 @@ import org.springframework.web.servlet.HandlerMapping;
  * 
  * all right reserved.
  * 
- * created on 2015Äê4ÔÂ6ÈÕ ÉÏÎç11:28:01
  * 
  * @author Tim Leung
  */
@@ -29,7 +28,7 @@ public class SpringServlet extends HttpServlet {
 	
 	/**
 	 * 
-	 * Í¨¹ıconfig
+	 * é€šè¿‡config
 	 * 
 	 * override by Tim Leung
 	 **/
@@ -41,7 +40,7 @@ public class SpringServlet extends HttpServlet {
 	}
 	
 	/**
-	 * Î¯ÅÉDispatcherServletÍê³ÉÊµ¼ÊµÄÇëÇó·Ö·¢
+	 * å§”æ´¾DispatcherServletå®Œæˆå®é™…çš„è¯·æ±‚åˆ†å‘
 	 * override by Tim Leung
 	 **/
 	@Override
