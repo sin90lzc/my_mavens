@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015��11��22�� ����10:18:41
  * 
  * @author Tim Leung
  */
@@ -30,7 +29,6 @@ import com.sin90lzc.resp.CorsResponse;
  * 
  * all right reserved.
  * 
- * created on 2015��11��22�� ����10:18:41
  * 
  * @author Tim Leung
  */

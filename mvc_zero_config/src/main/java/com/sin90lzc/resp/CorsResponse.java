@@ -35,8 +35,8 @@ public final class CorsResponse {
 	public final static HttpHeaders getCorsHeaders(){
 		if(headers==null){
 			headers = new HttpHeaders();
-//			headers.set("Access-Control-Allow-Origin", "*");
-//			headers.set("Access-Control-Allow-Methods", "POST");
+			headers.set("Access-Control-Allow-Origin", "*");
+			headers.set("Access-Control-Allow-Methods", "POST");
 //			headers.set("Access-Control-Max-Age", "60");
 //			headers.set("Access-Control-Allow-Headers", "Content-Type,*");
 //			headers.set("Access-Control-Allow-Credentials", "true");
