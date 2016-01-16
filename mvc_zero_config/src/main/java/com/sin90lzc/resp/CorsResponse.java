@@ -39,10 +39,10 @@ public final class CorsResponse {
 			headers = new HttpHeaders();
 			headers.set("Access-Control-Allow-Origin", "*");
 			headers.set("Access-Control-Allow-Methods", "POST");
-			headers.set("Access-Control-Max-Age", "60");
-			headers.set("Access-Control-Allow-Headers", "Content-Type,*");
-			headers.set("Access-Control-Allow-Credentials", "true");
-			headers.set("Content-Type", "application/json;charset=UTF-8");
+//			headers.set("Access-Control-Max-Age", "60");
+//			headers.set("Access-Control-Allow-Headers", "Content-Type,*");
+//			headers.set("Access-Control-Allow-Credentials", "true");
+//			headers.set("Content-Type", "application/json;charset=UTF-8");
 		}
 		return headers;
 	}

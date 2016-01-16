@@ -57,6 +57,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>mvc_zero_config</finalName>
+		<finalName>mc</finalName>
 	</build>
 </project>

@@ -47,10 +47,23 @@ public class AngularTestController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="**",method={RequestMethod.OPTIONS})
-	public HttpHeaders cors(String id,HttpServletRequest request) {
-		return CorsResponse.getCorsHeaders();
+//	@RequestMapping(value="cors/*",method={RequestMethod.OPTIONS})
+//	public HttpHeaders cors(String id,HttpServletRequest request) {
+//		return CorsResponse.getCorsHeaders();
+//	}
+	
+	
+	@RequestMapping(value="cors/getData",method={RequestMethod.POST})
+	public ResponseEntity<String> getData(){
+		Map<String,Object> ret=new HashMap<String,Object>();
+		
+		ret.put("name", "Tim");
+		ret.put("mobile", "18520581357");
+		
+		return CorsResponse.build(ret);
 	}
+	
+	
 	
 	/**
 	 * @category ÊÇ·ñµÇÂ¼
