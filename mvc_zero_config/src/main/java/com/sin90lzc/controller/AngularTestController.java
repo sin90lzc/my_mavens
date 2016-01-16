@@ -45,10 +45,10 @@ public class AngularTestController {
 	 * @param request
 	 * @return
 	 */
-//	@RequestMapping(value="cors/*",method={RequestMethod.OPTIONS})
-//	public HttpHeaders cors(String id,HttpServletRequest request) {
-//		return CorsResponse.getCorsHeaders();
-//	}
+	@RequestMapping(value="cors/*",method={RequestMethod.OPTIONS})
+	public HttpHeaders cors(String id,HttpServletRequest request) {
+		return CorsResponse.getCorsHeaders();
+	}
 	
 	
 	@RequestMapping(value="cors/getData",method={RequestMethod.POST})
