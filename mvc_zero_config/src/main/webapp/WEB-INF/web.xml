@@ -7,12 +7,10 @@
 	<servlet>
 		<servlet-name>spring-servlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<!-- 
 		<init-param>
 			<param-name>dispatchOptionsRequest</param-name>
 			<param-value>true</param-value>
 		</init-param>
-		 -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>com.sin90lzc.spring.GlobalConfig</param-value>
