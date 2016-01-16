@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年5月24日 下午3:41:19
  * 
  * @author Tim Leung
  */
@@ -11,7 +10,6 @@ package com.sin90lzc.spring.test.db;
  * 
  * all right reserved.
  * 
- * created on 2015年5月24日 下午3:41:19
  * 
  * @author Tim Leung
  */

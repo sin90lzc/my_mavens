@@ -1,6 +1,6 @@
 /**
  *
- * created on 2015年11月21日 下午2:03:43
+ * created on 2015锟斤拷11锟斤拷21锟斤拷 锟斤拷锟斤拷2:03:43
  * 
  * @author Tim Leung
  */
@@ -20,7 +20,6 @@ import com.google.gson.Gson;
  * 
  * all right reserved.
  * 
- * created on 2015年11月21日 下午2:03:43
  * 
  * @author Tim Leung
  */
@@ -49,7 +48,7 @@ public class CORSController {
 		Gson gs=new Gson();
 		Book book=new Book();
 		book.id=1;
-		book.bookName="人生格言";
+		book.bookName="浜虹敓鏍艰█";
 		HttpHeaders ret=new HttpHeaders();
 		ret.set("Access-Control-Allow-Origin", "*");
 		ret.set("Access-Control-Allow-Methods", "POST");

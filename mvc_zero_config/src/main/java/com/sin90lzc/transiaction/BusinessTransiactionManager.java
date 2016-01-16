@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年8月9日 下午3:40:25
  * 
  * @author Tim Leung
  */
@@ -13,7 +12,6 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * 
  * all right reserved.
  * 
- * created on 2015年8月9日 下午3:40:25
  * 
  * @author Tim Leung
  */

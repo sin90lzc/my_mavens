@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年4月19日 下午2:40:42
  * 
  * @author Tim Leung
  */
@@ -14,7 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * 
  * all right reserved.
  * 
- * created on 2015年4月19日 下午2:40:42
  * 
  * @author Tim Leung
  */

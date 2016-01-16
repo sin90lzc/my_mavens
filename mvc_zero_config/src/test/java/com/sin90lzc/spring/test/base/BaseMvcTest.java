@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年4月25日 上午11:09:13
  * 
  * @author Tim Leung
  */
@@ -17,7 +16,6 @@ import org.springframework.web.context.WebApplicationContext;
  * 
  * all right reserved.
  * 
- * created on 2015年4月25日 上午11:09:13
  * 
  * @author Tim Leung
  */

@@ -1,6 +1,6 @@
 /**
  *
- * created on 2015年11月22日 下午4:25:04
+ * created on 2015锟斤拷11锟斤拷22锟斤拷 锟斤拷锟斤拷4:25:04
  * 
  * @author Tim Leung
  */
@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
  * 
  * all right reserved.
  * 
- * created on 2015年11月22日 下午4:25:04
  * 
  * @author Tim Leung
  */

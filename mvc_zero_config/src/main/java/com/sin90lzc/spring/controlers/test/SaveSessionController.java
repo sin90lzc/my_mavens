@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年5月17日 下午10:14:48
  * 
  * @author Tim Leung
  */
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
  * 
  * all right reserved.
  * 
- * created on 2015年5月17日 下午10:14:48
  * 
  * @author Tim Leung
  */

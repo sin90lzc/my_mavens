@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年4月19日 下午6:02:45
  * 
  * @author Tim Leung
  */
@@ -15,7 +14,6 @@ import com.sin90lzc.spring.test.base.BaseTest;
  * 
  * all right reserved.
  * 
- * created on 2015年4月19日 下午6:02:45
  * 
  * @author Tim Leung
  */

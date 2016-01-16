@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年4月11日 下午7:59:09
  * 
  * @author Tim Leung
  */
@@ -22,7 +21,6 @@ import com.sin90lzc.spring.GlobalConfig;
  * 
  * all right reserved.
  * 
- * created on 2015年4月11日 下午7:59:09
  * 
  * @author Tim Leung
  */

@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015年11月21日 下午5:55:37
  * 
  * @author Tim Leung
  */
@@ -14,7 +13,6 @@ import com.google.gson.GsonBuilder;
  * 
  * all right reserved.
  * 
- * created on 2015年11月21日 下午5:55:37
  * 
  * @author Tim Leung
  */

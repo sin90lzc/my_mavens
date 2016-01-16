@@ -1,6 +1,5 @@
 /**
  *
- * created on 2015锟斤拷4锟斤拷19锟斤拷 锟斤拷锟斤拷3:01:21
  * 
  * @author Tim Leung
  */
@@ -17,7 +16,7 @@ import org.springframework.test.context.TestExecutionListener;
  * all right reserved.
  * 
  * 
- * 实现TestExecutionListener，只是简单地写日志而已
+ * 瀹炵幇TestExecutionListener锛屽彧鏄畝鍗曞湴鍐欐棩蹇楄�屽凡
  * 
  * @author Tim Leung
  */
